@@ -8,7 +8,7 @@ export const Login = () => {
 
 	const handleClick = async () =>{
 		try {
-			const {data, error} = await login('ludek@rolecek.cz', 'heslo123');
+			const {data, error} = await login('EMAIL', 'HESLO');
 			if (error) {
 				console.log(error)
 			}
