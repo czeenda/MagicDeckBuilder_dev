@@ -6,8 +6,8 @@ const Home = () => {
 
 	return (
 		<>
-			<h2>Home</h2>
-			<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam provident iusto deleniti nulla nihil quasi quae pariatur, architecto hic aspernatur.</p>
+			<h2>Balíčky</h2>
+			<p>Zde budou vidět balíčky přihlášeného uživatle.</p>
 
 			<button onClick={()=>{ logout()  }}>Odhlasit se</button>
 		</>
