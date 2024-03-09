@@ -6,15 +6,15 @@ export const Register = () => {
 
 	const handleClick = () =>{
 		try {
-			const {data, error} = register('EMAIL','HESLO')
+			const {data, error} = register('j.seycek@gmail.com','123qwe ')
 
 			if (!error && data) {
 				console.log("Registration Successful. Check your email to confirm your account");
 			}
 		}
 		catch (error) {
-			console.log("Error in Creating Account");
-		}
+	 		console.log("Error in Creating Account");
+		} 
 
 	}
 

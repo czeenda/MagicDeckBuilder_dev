@@ -1,4 +1,4 @@
-import {useAuth} from '../context/AuthProvider'
+ import {useAuth} from '../context/AuthProvider'
 
 import {useNavigate} from 'react-router-dom'
 
@@ -8,7 +8,7 @@ export const Login = () => {
 
 	const handleClick = async () =>{
 		try {
-			const {data, error} = await login('EMAIL', 'HESLO');
+			const {data, error} = await login('j.seycek@gmail.com', '123qwe');
 			if (error) {
 				console.log(error)
 			}
