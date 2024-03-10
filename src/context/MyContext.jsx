@@ -1,18 +1,14 @@
 import {useState, createContext} from 'react';
 
-export const UserContext = createContext(null);
+export const MyContext = createContext(null)
 
-export const UserContextProvider = ({children}) => {
-	const [user, setUser] = useState({
-		loggedIn: true,
-		name: 'Emil',
-		surname: 'Vomáčka',
-	})
+
+export const MyContextProvider = ({children}) => {
+	const [count, setCount] = useState(9)
 
 	return (
-		<UserContext.Provider value={{user, setUser}}>
+		<MyContext.Provider value={{count, setCount}}>
 			{children}
-		</UserContext.Provider>
+		</MyContext.Provider>
 	)
-
 }
