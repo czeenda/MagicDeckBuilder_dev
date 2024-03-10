@@ -16,7 +16,7 @@ const About = () => {
 				<li>Eos eius atque vero laudantium, eum dolores!</li>
 				<li>Fuga harum, saepe quos ratione dolorum omnis.</li>
 			</ul>
-			<p>{edition}</p>
+			<p>{edition.name}</p>
 
 		</>
 	);

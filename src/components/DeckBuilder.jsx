@@ -7,18 +7,16 @@ const DeckBuilder = () => {
 
 	const {edition, setEdition} = useContext(MyContext)
 
-	const [magic, setMagic] = useState(false)
+	const [ magic, setMagic] = useState(false)
     
     useEffect(() => {
+
 		const loadCards = async () => {
-			const response = await fetch(`https://api.scryfall.com/sets/`)
+			const response = await fetch(`https://api.scryfall.com/cards/search?include_extras=true&include_variations=true&order=set&q=e%3A${edition.code}&unique=prints`)
 			const data = await response.json()
 
-            //setMagic(data.cards)
-            //console.log(data.data)
-            const mySets = data.data.filter((element) => new Date(element.released_at) >= new Date("2024-01-01"));
 
-            setMagic(mySets)
+			setMagic(data.data)			
 
 		}
 		loadCards()
@@ -27,12 +25,7 @@ const DeckBuilder = () => {
 	return (
 		<>
 			<h2>DeckBuilder</h2>
-			<p>Edition: {edition}</p>
-
-
-			
-			
-
+			{magic === false ? <p>Načítání dat</p> : <span>{magic.map((element) => (<img src={element.image_uris.normal} className="card d-inline-block" />))}</span>}
 		</>
 	);
 }

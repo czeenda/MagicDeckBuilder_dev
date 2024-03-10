@@ -28,7 +28,7 @@ const Editions = () => {
 	return (
 		<>
 			<h2>Editions</h2>
-			<p>Vybraná edice: {edition}</p>
+			<p>Vybraná edice: {edition.name} {edition.code} a {edition.imgUrl}</p>
 
 			<div className="container-lg">
 				<div className="row">
@@ -36,14 +36,16 @@ const Editions = () => {
 					{magic === false ? <p>Načítání dat...</p> :
             		<div className="row">
                 		{magic.map((element) => (
-						<div className="col-2 text-center mt-2" key={element.id} onClick={() => setEdition(element.name)}>
+						<div className="col-2 text-center mt-2" key={element.id} onClick={() => setEdition({name: `${element.name}`, code: `${element.code}`, imgUrl: `${element.icon_svg_uri}`})}>
 									
-							<Link to="/deckbuilder">
+								<Link to="/deckbuilder">
 
-							<img src={element.icon_svg_uri} />
-							<h5 class="mt-1">{element.name}</h5>
+							<img src={element.icon_svg_uri} className='icon' />
+							<h5 className="mt-1">{element.name}</h5>
+
+								</Link>
 							
-							</Link>
+							
 							
 						{/* {element.search_uri} */}
 						

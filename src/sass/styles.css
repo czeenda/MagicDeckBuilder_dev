@@ -1,7 +1,10 @@
 body {
   background-color: lightgoldenrodyellow;
 }
-body img {
+body img.icon {
   height: 80px;
+}
+body img.card {
+  width: 100px;
 }
 /*# sourceMappingURL=styles.css.map */
