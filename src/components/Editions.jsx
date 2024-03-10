@@ -1,15 +1,12 @@
-import {useContext} from 'react'
-import { EditionContext } from './../context/EditionProvider'
+import {useContext} from 'react';
+import {MyContext} from './../context/MyContext'
 
 import { useState, useEffect } from "react"
 import {Link} from 'react-router-dom'
 
-//import EditionsItem from "./EditionsItem"
-
-
 const Editions = () => {
 
-	//const {edition, setEdition} = useContext(EditionContext)
+	const {edition, setEdition} = useContext(MyContext)
 
 	const [magic, setMagic] = useState(false)
     
@@ -31,8 +28,7 @@ const Editions = () => {
 	return (
 		<>
 			<h2>Editions</h2>
-			
-
+			<p>Vybraná edice: {edition}</p>
 
 			<div className="container-lg">
 				<div className="row">
@@ -40,7 +36,7 @@ const Editions = () => {
 					{magic === false ? <p>Načítání dat...</p> :
             		<div className="row">
                 		{magic.map((element) => (
-						<div className="col-2 text-center mt-2" key={element.id}>
+						<div className="col-2 text-center mt-2" key={element.id} onClick={() => setEdition(element.name)}>
 									
 							<Link to="/deckbuilder">
 

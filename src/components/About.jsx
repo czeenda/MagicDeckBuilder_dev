@@ -1,4 +1,9 @@
+import {useContext} from 'react';
+import {MyContext} from './../context/MyContext'
+
 const About = () => {
+
+	const {edition, setEdition} = useContext(MyContext)
 
 	return (
 		<>
@@ -11,6 +16,7 @@ const About = () => {
 				<li>Eos eius atque vero laudantium, eum dolores!</li>
 				<li>Fuga harum, saepe quos ratione dolorum omnis.</li>
 			</ul>
+			<p>{edition}</p>
 
 		</>
 	);

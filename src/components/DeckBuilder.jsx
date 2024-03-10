@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react"
-//import {Link} from 'react-router-dom'
+import { useState, useEffect, useContext} from "react"
+import {MyContext} from './../context/MyContext'
 
-//import EditionsItem from "./EditionsItem"
 
 
 const DeckBuilder = () => {
+
+	const {edition, setEdition} = useContext(MyContext)
 
 	const [magic, setMagic] = useState(false)
     
@@ -26,6 +27,7 @@ const DeckBuilder = () => {
 	return (
 		<>
 			<h2>DeckBuilder</h2>
+			<p>Edition: {edition}</p>
 
 
 			

@@ -3,7 +3,7 @@ import {Routes, Route, Link} from 'react-router-dom'
 
 import AuthRoute from './components/AuthRoute'
 
-import { UserContextProvider } from './context/UserContext'
+import { MyContextProvider } from './context/MyContext'
 
 import Home from './components/Home'
 import Editions from './components/Editions'
@@ -31,7 +31,7 @@ function App() {
       </nav>
 
 
-      <UserContextProvider>
+      <MyContextProvider>
 
       <Routes>
       
@@ -49,7 +49,7 @@ function App() {
         <Route path="/login" element={<Login />} />
       </Routes>
 
-      </UserContextProvider>
+      </MyContextProvider>
 
     </>
   )

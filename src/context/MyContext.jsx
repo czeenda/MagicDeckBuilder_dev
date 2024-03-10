@@ -4,10 +4,10 @@ export const MyContext = createContext(null)
 
 
 export const MyContextProvider = ({children}) => {
-	const [count, setCount] = useState(9)
+	const [ edition, setEdition] = useState("Tempest")
 
 	return (
-		<MyContext.Provider value={{count, setCount}}>
+		<MyContext.Provider value={{edition, setEdition}}>
 			{children}
 		</MyContext.Provider>
 	)
