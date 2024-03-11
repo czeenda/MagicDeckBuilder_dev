@@ -10,8 +10,13 @@ export const MyContextProvider = ({children}) => {
 		imgUrl: 'https://svgs.scryfall.io/sets/blb.svg?1709528400',
 	})
 
+	const [ deckID, setDeckID] = useState(false)
+
+	const [ deck, setDeck] = useState([])
+	
+
 	return (
-		<MyContext.Provider value={{edition, setEdition}}>
+		<MyContext.Provider value={{edition, setEdition, deck, setDeck, deckID, setDeckID}}>
 			{children}
 		</MyContext.Provider>
 	)

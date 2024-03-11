@@ -9,7 +9,10 @@ import Home from './components/Home'
 import Editions from './components/Editions'
 import DeckBuilder from './components/DeckBuilder'
 import About from './components/About'
+import WorkOnSidebar from './components/WorkOnSidebar'
+
 import Contacts from './components/Contacts'
+
 import Login from './components/Login'
 import Register from './components/Register'
 
@@ -18,8 +21,7 @@ function App() {
 
   return (
     <>
-      <h1>Supabase + Auth + Router</h1>
-
+      <h1>Magic Deck Builder</h1>
       <nav>
         <Link to="/">Home</Link> |   
         <Link to="/editions">Editions</Link> | 
@@ -30,26 +32,36 @@ function App() {
         <Link to="/register">Register</Link> |
       </nav>
 
-
       <MyContextProvider>
 
-      <Routes>
-      
-        <Route element={<AuthRoute />}>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-8">
+            <Routes>
+              <Route element={<AuthRoute />}>
 
-            <Route path="/" element={<Home />} />
-            <Route path="/editions" element={<Editions />} />
-            <Route path="/deckbuilder" element={<DeckBuilder />} />
-            <Route path="/about" element={<About />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/editions" element={<Editions />} />
+                <Route path="/deckbuilder" element={<DeckBuilder />} />
+                <Route path="/about" element={<About />} />
 
-        </Route>
+              </Route>
 
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+                <Route path="/contacts" element={<Contacts />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+            </Routes>
 
-      </MyContextProvider>
+
+        </div>
+          <div className="col-4">
+           <WorkOnSidebar/>
+          </div>
+        </div>
+      </div>
+
+    </MyContextProvider>
+     
 
     </>
   )

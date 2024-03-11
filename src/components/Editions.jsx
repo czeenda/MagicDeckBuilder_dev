@@ -8,6 +8,8 @@ const Editions = () => {
 
 	const {edition, setEdition} = useContext(MyContext)
 
+	const {deck, setDeck} = useContext(MyContext)
+
 	const [magic, setMagic] = useState(false)
     
     useEffect(() => {
@@ -44,25 +46,20 @@ const Editions = () => {
 							<h5 className="mt-1">{element.name}</h5>
 
 								</Link>
-							
-							
-							
-						{/* {element.search_uri} */}
-						
-						
+
 						
 						</div>))}
             		</div>}
-
-
-		
-
-
 				
+				</div>
+				<div className="row">
+					<div className="col-12">
+						
+					</div>
 				</div>
 			</div>
 
-			
+			{deck.cardName}
 
 		</>
 	);

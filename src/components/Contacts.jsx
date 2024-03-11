@@ -10,15 +10,18 @@ const Contacts = () => {
 		const loadData = async () => {
 			try {
 				const {data, error} = await supabase
-					.from('contacts')
-					.select()
-					.order('surname');
+					.from('Decks')
+					.select('*')
+					//.order('name');
+
+					console.log("ok")
 
 					if (error) {
 					console.log(error)
 				} else {
-					console.log(data)
+					console.log("funguje")
 					setContacts(data)
+
 				}
 			}
 			catch (error) {
@@ -29,16 +32,34 @@ const Contacts = () => {
 		loadData();
 	}, [])
 
+	const handleAddDeck = async () => {
+		const { data, error } = await supabase
+		  .from('Decks')
+		  .insert({
+			id: "id",
+			name: "jmeno",
+			deck_id: "500"
+		  })
+		  
+	  }
+
 
 	return (
 		<>
 			<h2>Contacts</h2>
 
-			<ul>
-				{contacts.map(contact => <li key={contact.id}>
-					{contact.name} {contact.surname} - {contact.jobtitle}
-				</li>)}
-			</ul>
+			<button onClick={handleAddDeck}>Nový balíček</button>
+
+			{contacts === false ? <p>Načítání dat...</p> : <ul>{contacts.map(contact => <li key={contact.id}>
+				{contact.name} {contact.id}
+			</li>)}</ul>}
+
+			
+			
+			
+		
+
+			
 
 		</>
 	);

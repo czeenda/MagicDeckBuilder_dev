@@ -20,7 +20,7 @@ export const Login = () => {
 				setMessage("Špatný email nebo heslo.")
 			}
 			if (data.user && data.session) {
-				// console.log('prihlaseny', data.user)
+				console.log('prihlaseny', data.user)
 				// prihlaseneho uzivatele presmerujeme na home
 				navigate('/')
 			}
