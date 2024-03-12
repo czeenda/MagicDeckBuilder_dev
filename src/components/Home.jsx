@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {useAuth} from './../context/AuthProvider'
 import { useState, useEffect, useContext } from 'react';
 
@@ -17,6 +18,8 @@ const Home = () => {
 	const [ newDeckName, setNewDeckName] = useState("")
 
 	const { deckID, setDeckID} = useContext(MyContext)
+
+	const { deckName, setDeckName} = useContext(MyContext)
 
 
 	useEffect(() => {
@@ -45,33 +48,29 @@ const Home = () => {
 		}
 
 		loadData();
-	}, [deckID])
+	},)
 
 	const handleAddDeck = async () => {
-		try {
-			const {data, error} = await supabase
+		
+		const {data, error} = await supabase
 				.from('Decks')
 				.insert({
 					name: newDeckName,
 				  })
 
 				console.log("ok")
+				
+	  }
 
-				if (error) {
-				console.log(error)
-			} else {
-				console.log("posláno")
-				setDecks(data)
-				setDeckID(newDeckName)
-				console.log(data)
+	  const handleItemClick = (element) => {
+		setDeckID(element.id)
+		setDeckName(element.name)
+	  }
 
-			}
-		}
-		catch (error) {
-			console.log(error)
-		}
-		
-		  
+	  const empty = () => {
+		logout()
+		setDeckID(false)
+		setDeckName(false)
 	  }
 
 	return (
@@ -81,7 +80,7 @@ const Home = () => {
 			<p>Zde budou vidět balíčky přihlášeného uživatle.</p>
 
 			<div>
-				<button onClick={()=>{ logout()  }}>Odhlasit se</button>
+				<button onClick={empty}>Odhlasit se</button>
 			</div>
 
 			<div>
@@ -93,9 +92,15 @@ const Home = () => {
 
 			
 
-			{decks === false ? <p>Načítání dat...</p> : <div>{decks.map(element => <div key={element.id} onClick={() => setDeckID(element.name)}>
-				{element.name}
-			</div>)}</div>}
+			{decks === false ? <p>Načítání dat...</p> : <div>{decks.map(element => 
+			
+			<Link to="/editions"> 
+				<div key={element.id} onClick={() => handleItemClick(element)}>
+				Jméno balíčku: {element.name} 
+				</div>
+			</Link>)}
+			
+			</div>}
 
 		</>
 	);

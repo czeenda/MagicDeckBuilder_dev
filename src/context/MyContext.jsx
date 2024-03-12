@@ -12,11 +12,13 @@ export const MyContextProvider = ({children}) => {
 
 	const [ deckID, setDeckID] = useState(false)
 
+	const [ deckName, setDeckName] = useState("")
+
 	const [ deck, setDeck] = useState([])
 	
 
 	return (
-		<MyContext.Provider value={{edition, setEdition, deck, setDeck, deckID, setDeckID}}>
+		<MyContext.Provider value={{edition, setEdition, deck, setDeck, deckID, setDeckID, deckName, setDeckName}}>
 			{children}
 		</MyContext.Provider>
 	)

@@ -14,6 +14,9 @@ const WorkOnSidebar = () => {
 
 	const { deckID, setDeckID} = useContext(MyContext)
 
+	const { deckName, setDeckName} = useContext(MyContext)
+
+
 	useEffect(() => {
 		const loadData = async () => {
 			try {
@@ -55,7 +58,7 @@ const WorkOnSidebar = () => {
 				.from('Cards')
 				.insert(deck)
 
-				console.log("ok")
+				console.log("nalezeno")
 
 				if (error) {
 				console.log(error)
@@ -69,28 +72,43 @@ const WorkOnSidebar = () => {
 		catch (error) {
 			console.log(error)
 		}
-		
 		  
 	  }
 
-	  useEffect(() => {
+	  const deleteCards = async () => {
+		const { data, error } = await supabase
+		  .from('Cards')
+		  .delete()
+		  .eq('deck_id', deckID)
+	
+		console.log(data)
+	  }
+
+	  const deleteAndSave = () => {
+		deleteCards()
+		saveCards()
+	  }
+
+	  /* useEffect(() => {
 
         console.log("filtr");
 
 
-      }, []);
+      }, []); */
 
 	if (auth){
 		return(
 			<>
 				<h2>Tvůj deck</h2>
 				<p>User: {user.id}</p>
-				<p>Balíček: {deckID}</p>
-
+				
 
 				
 				
 					{deckID === false ? <p>Vyberte váš balíček</p> : <>
+					<p>Balíček: {deckName}</p>
+					<p>ID: {deckID}</p>
+
 					<ul>
 						{deck.map((element, id) => (
 
@@ -108,7 +126,7 @@ const WorkOnSidebar = () => {
 						
 						))}</ul>
 						
-						<button onClick={saveCards}>Save your cards</button>
+						<button onClick={deleteAndSave}>Save your cards</button>
 
 						</>}
 

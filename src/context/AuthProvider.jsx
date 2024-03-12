@@ -1,5 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
+//import {MyContext} from './../context/MyContext'
+
+
 import {supabase} from './../supabase/client'
 
 
@@ -16,6 +19,7 @@ const login = async (email, password) => {
 }
 
 const logout = async () => {
+
   return supabase.auth.signOut();
 }
 
