@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
 import {useAuth} from './../context/AuthProvider'
 import { useState, useEffect, useContext } from 'react';
 
@@ -58,7 +58,8 @@ const Home = () => {
 					name: newDeckName,
 				  })
 
-				console.log("ok")
+				console.log("přídán nový balíček")
+				setNewDeckName("")
 				
 	  }
 
@@ -94,11 +95,11 @@ const Home = () => {
 
 			{decks === false ? <p>Načítání dat...</p> : <div>{decks.map(element => 
 			
-			<Link to="/editions"> 
+			
 				<div key={element.id} onClick={() => handleItemClick(element)}>
 				Jméno balíčku: {element.name} 
 				</div>
-			</Link>)}
+			)}
 			
 			</div>}
 

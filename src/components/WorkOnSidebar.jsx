@@ -52,7 +52,8 @@ const WorkOnSidebar = () => {
 		setDeck(updatedDeck);
 	  };
 
-	  const saveCards = async () => {
+
+	 /*  const saveCards = async () => {
 		try {
 			const {data, error} = await supabase
 				.from('Cards')
@@ -64,8 +65,8 @@ const WorkOnSidebar = () => {
 				console.log(error)
 			} else {
 				console.log("posláno")
-				//setDecks(data)
-				console.log(data)
+
+				//console.log(data)
 
 			}
 		}
@@ -73,42 +74,54 @@ const WorkOnSidebar = () => {
 			console.log(error)
 		}
 		  
-	  }
+	  } */
 
-	  const deleteCards = async () => {
-		const { data, error } = await supabase
-		  .from('Cards')
-		  .delete()
-		  .eq('deck_id', deckID)
-	
-		console.log(data)
-	  }
+	  const saveCards = async () => {
+		try {
+		  // Delete cards with the specified deck_id
+		  const deleteResult = await supabase
+			.from('Cards')
+			.delete()
+			.eq('deck_id', deckID);
+	  
+		  // Check for errors in the delete operation
+		  if (deleteResult.error) {
+			console.log(deleteResult.error);
+			return; // Exit the function if there's an error in the delete operation
+		  }
+	  
+		  console.log("Deleted existing cards for deck_id:", deckID);
+	  
+		  // Insert new cards into the 'Cards' table
+		  const insertResult = await supabase
+			.from('Cards')
+			.insert(deck);
+	  
+		  // Check for errors in the insert operation
+		  if (insertResult.error) {
+			console.log(insertResult.error);
+		  } else {
+			console.log("Inserted new cards for deck_id:", deckID);
+			// setDecks(insertResult.data) // Uncomment and modify as needed
+			console.log(insertResult.data);
+		  }
+		} catch (error) {
+		  console.log(error);
+		}
+	  };
+	  
 
-	  const deleteAndSave = () => {
-		deleteCards()
-		saveCards()
-	  }
-
-	  /* useEffect(() => {
-
-        console.log("filtr");
-
-
-      }, []); */
 
 	if (auth){
 		return(
 			<>
 				<h2>Tvůj deck</h2>
-				<p>User: {user.id}</p>
-				
 
-				
-				
+
 					{deckID === false ? <p>Vyberte váš balíček</p> : <>
+					{/* <p>User: {user.id}</p> */}
 					<p>Balíček: {deckName}</p>
-					<p>ID: {deckID}</p>
-
+					{/* <p>ID: {deckID}</p> */}
 					<ul>
 						{deck.map((element, id) => (
 
@@ -126,7 +139,7 @@ const WorkOnSidebar = () => {
 						
 						))}</ul>
 						
-						<button onClick={deleteAndSave}>Save your cards</button>
+						<button onClick={saveCards}>Save your cards</button>
 
 						</>}
 
