@@ -20,23 +20,25 @@ function App() {
 
 
   return (
-    <>
-      <h1>Magic Deck Builder</h1>
-      <nav>
-        <Link to="/">Home</Link> |   
-        <Link to="/editions">Editions</Link> | 
-        <Link to="/deckbuilder">Deck Builder</Link> |
-        <Link to="/about">About</Link> |
-        <Link to="/contacts">Contacts</Link> |
-        <Link to="/login">Login</Link> |
-        <Link to="/register">Register</Link> |
-      </nav>
-
-      <MyContextProvider>
-
-      <div className="container-fluid">
+    <section>
+      <div className="container-xl">
         <div className="row">
-          <div className="col-8">
+          <div className="col-12">
+            <nav class="mt-2">
+              <h1>Magic Deck Builder</h1>
+              <Link to="/">Home</Link> |   
+              <Link to="/editions">Editions</Link> | 
+              <Link to="/deckbuilder">Deck Builder</Link> |
+              <Link to="/about">About</Link> |
+              <Link to="/contacts">Contacts</Link> |
+              <Link to="/login">Login</Link> |
+              <Link to="/register">Register</Link> |
+            </nav>
+          </div>
+        </div>
+            <MyContextProvider>
+          <div className="row">
+            <div className="col-8">
             <Routes>
               <Route element={<AuthRoute />}>
 
@@ -53,17 +55,16 @@ function App() {
             </Routes>
 
 
+            </div>
+            <div className="col-4">
+            <WorkOnSidebar/>
+            </div>
         </div>
-          <div className="col-4">
-           <WorkOnSidebar/>
-          </div>
-        </div>
-      </div>
-
-    </MyContextProvider>
+      </MyContextProvider>
+    </div>
      
 
-    </>
+    </section>
   )
 }
 

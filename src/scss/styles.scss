@@ -1,0 +1,21 @@
+// Import all of Bootstrap's CSS
+@import "bootstrap/scss/bootstrap";
+
+
+
+body{
+    background-color: black;
+    .container-xl{
+        background-color: lightgoldenrodyellow;
+        min-height: 100vh;
+        margin-top: 5rem;
+        border-radius: 1rem;
+    }
+
+    img.icon{
+        height: 80px
+    }
+    img.card{
+        width: 100px
+    }
+}

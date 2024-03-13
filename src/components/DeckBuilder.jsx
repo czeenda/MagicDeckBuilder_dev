@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom"
 import { useState, useEffect, useContext} from "react"
 import {MyContext} from './../context/MyContext'
 import {useAuth} from './../context/AuthProvider'
@@ -36,9 +37,12 @@ const DeckBuilder = () => {
 
 
 	return (
-		<>	<p>User: ID {user.id}</p>
+		<>	
+			{/* <p>User: ID {user.id}</p> */}
 			<h2>DeckBuilder</h2>
+			<div class="mb-1"><Link to="/">Zpět na výběr balíku</Link></div>
 			<p>Selected Edition: {edition.name}</p>
+			<div class="mb-2"><Link to="/editions">Zpět na výběr edice</Link></div>
 
 			{magic === false ? <p>Načítání dat</p> : 
 
