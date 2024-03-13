@@ -79,8 +79,6 @@ const Home = () => {
 	  }
 
 	  
-		
-
 	  const deleteDeck = async (element) => {
 		try {
 			// Delete the deck from 'Decks' table

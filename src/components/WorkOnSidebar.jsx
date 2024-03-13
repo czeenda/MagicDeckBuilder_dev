@@ -1,9 +1,14 @@
 import {useContext, useEffect} from 'react';
 import {MyContext} from './../context/MyContext'
 
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import {useAuth} from '../context/AuthProvider'
 
 import {supabase} from './../supabase/client'
+
+import SortableListApp from './List/SortableListApp';
 
 
 // Komponenta zobrazuje všechny karty a filtruje je podle vybraného uživatele a decku
@@ -51,30 +56,6 @@ const WorkOnSidebar = () => {
 		const updatedDeck = deck.filter((_, index) => index !== id);
 		setDeck(updatedDeck);
 	  };
-
-
-	 /*  const saveCards = async () => {
-		try {
-			const {data, error} = await supabase
-				.from('Cards')
-				.insert(deck)
-
-				console.log("nalezeno")
-
-				if (error) {
-				console.log(error)
-			} else {
-				console.log("posláno")
-
-				//console.log(data)
-
-			}
-		}
-		catch (error) {
-			console.log(error)
-		}
-		  
-	  } */
 
 	  const saveCards = async () => {
 		try {
@@ -142,6 +123,9 @@ const WorkOnSidebar = () => {
 						<button onClick={saveCards}>Save your cards</button>
 
 						</>}
+
+
+						<SortableListApp/>
 
 					
 				

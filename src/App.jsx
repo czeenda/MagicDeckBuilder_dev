@@ -15,6 +15,7 @@ import Contacts from './components/Contacts'
 
 import Login from './components/Login'
 import Register from './components/Register'
+import SortableListApp from './components/List/SortableListApp'
 
 function App() {
 
@@ -57,7 +58,7 @@ function App() {
 
             </div>
             <div className="col-4">
-            <WorkOnSidebar/>
+            <SortableListApp/>
             </div>
         </div>
       </MyContextProvider>
