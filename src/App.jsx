@@ -16,12 +16,13 @@ import Contacts from './components/Contacts'
 import Login from './components/Login'
 import Register from './components/Register'
 import SortableListApp from './components/List/SortableListApp'
+import Preview from './components/List/Preview'
 
 function App() {
 
 
   return (
-    <section className='h-100 m-1'>
+    <section className='h-100 p-1'>
       <div className="container-xl p-1">
         <div className="row">
           <div className="col-12">
@@ -39,7 +40,7 @@ function App() {
         </div>
             <MyContextProvider>
           <div className="row mt-1">
-            <div className="col-8">
+            <div className="col-6">
             <Routes>
               <Route element={<AuthRoute />}>
 
@@ -57,8 +58,12 @@ function App() {
 
 
             </div>
-            <div className="col-4">
-            <SortableListApp/>
+            <div className="col-6">
+              <div className="row">
+                <div className="col-6"><SortableListApp/></div>
+                <div className="col-6"><Preview/></div>
+              </div>
+            
             </div>
         </div>
       </MyContextProvider>

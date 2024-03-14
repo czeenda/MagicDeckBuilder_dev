@@ -1,6 +1,11 @@
+#root {
+  min-height: 100%;
+}
+
 body {
   background-image: url(".././assets/back.jpg");
   background-size: cover;
+  height: 100vh;
 }
 body .container-xl {
   background: rgba(255, 255, 255, 0.8);
@@ -8,12 +13,64 @@ body .container-xl {
           backdrop-filter: saturate(180%) blur(10px);
   border: solid 1px black;
   border-radius: 1rem;
+  height: 100%;
 }
 body img.icon {
   height: 80px;
 }
-body img.card {
+body .preview img.magic {
+  width: 300px;
+  border-radius: 0.6rem;
+}
+body .deckbuilder img.magic {
   width: 100px;
+  border-radius: 0.3rem;
+  transition: scale 0.3s;
+}
+body .deckbuilder img.magic:hover {
+  transform: scale(1.5);
+}
+body .editions a {
+  color: black;
+  text-decoration: none;
+}
+body .workon img.magic {
+  width: 12.5rem;
+  border-radius: 0.6rem;
+}
+body .workon .cards {
+  position: relative;
+}
+body .workon .card-box {
+  position: absolute;
+  border-radius: 0.6rem;
+}
+body .workon .full {
+  border-radius: 0.6rem;
+}
+body .workon .full .card-x {
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 2rem;
+  border-radius: 0.6rem;
+}
+body .workon .full .x {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-top-right-radius: 0.6rem;
+  border-bottom-left-radius: 0.6rem;
+  color: transparent;
+}
+body .workon .full:hover .x {
+  color: white;
+  background: black;
+}
+body .dragable {
+  top: 0;
 }
 body .deck {
   border: solid 1px gray;

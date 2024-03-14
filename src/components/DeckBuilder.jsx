@@ -37,11 +37,11 @@ const DeckBuilder = () => {
 
 
 	return (
-		<>	
+		<section className="deckbuilder">	
 			{/* <p>User: ID {user.id}</p> */}
 			<h2>DeckBuilder</h2>
 			<div class="mb-1"><Link to="/">Zpět na výběr balíku</Link></div>
-			<p>Selected Edition: {edition.name}</p>
+			<p>Vybraná edice: <strong>{edition.name}</strong></p>
 			<div class="mb-2"><Link to="/editions">Zpět na výběr edice</Link></div>
 
 			{magic === false ? <p>Načítání dat</p> : 
@@ -50,20 +50,20 @@ const DeckBuilder = () => {
 
 			(<div className="d-inline-block" key={id}>
 
-				<div onClick={() => setDeck([...deck, {
+				<div className="m-11" onClick={() => setDeck([...deck, {
 					card_id: `${element.id}`,
 					name: `${element.name}`, 
 					deck_id: `${deckID}`, 
 					image_url: `${element.image_uris.normal}`,
 					price: 10,
 					edition_code: `${edition.code}`}])}>
-						<img src={element.image_uris.normal} className="card d-inline-block" />
+						<img src={element.image_uris.normal} className="magic d-inline-block" />
 				</div>
 
 			</div>))
 			}
 			</>}
-		</>
+		</section>
 	);
 }
 

@@ -11,6 +11,8 @@ const Editions = () => {
 	const {deck, setDeck} = useContext(MyContext)
 
 	const [magic, setMagic] = useState(false)
+
+	const [ dateEdition, setDateEdition] = useState("2024-01-01")
     
     useEffect(() => {
 		const loadCards = async () => {
@@ -19,7 +21,7 @@ const Editions = () => {
 
             //setMagic(data.cards)
             //console.log(data.data)
-            const mySets = data.data.filter((element) => new Date(element.released_at) >= new Date("2024-01-01"));
+            const mySets = data.data.filter((element) => new Date(element.released_at) >= new Date(dateEdition));
 
             setMagic(mySets)
 
@@ -28,23 +30,23 @@ const Editions = () => {
 	}, [])
 
 	return (
-		<>
-			<h2>Editions</h2>
-			<p>Vybraná edice: {edition.name} {edition.code} a {edition.imgUrl}</p>
-
+		<section className='editions'>
+			<h2>Edice</h2>
+			<p>Vydané od {dateEdition}</p>
+			
 			<div className="container-lg">
 				<div className="row">
 
 					{magic === false ? <p>Načítání dat...</p> :
             		<div className="row">
                 		{magic.map((element) => (
-						<div className="col-2 text-center mt-2" key={element.id} onClick={() => setEdition({name: `${element.name}`, code: `${element.code}`, imgUrl: `${element.icon_svg_uri}`})}>
+						<div className="col-3 text-center mt-2" key={element.id} onClick={() => setEdition({name: `${element.name}`, code: `${element.code}`, imgUrl: `${element.icon_svg_uri}`})}>
 									
 								<Link to="/deckbuilder">
-
-							<img src={element.icon_svg_uri} className='icon' />
-							<h5 className="mt-1">{element.name}</h5>
-
+									<div>
+										<img src={element.icon_svg_uri} className='icon' />
+										<h5 className="mt-1">{element.name}</h5>
+									</div>
 								</Link>
 
 						
@@ -61,7 +63,7 @@ const Editions = () => {
 
 			{deck.cardName}
 
-		</>
+		</section>
 	);
 }
 

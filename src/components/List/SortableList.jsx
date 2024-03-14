@@ -107,10 +107,12 @@ const SortableList = () => {
     if(auth){
     return (
       <>
-        <section className='row'>
-        <h2>Tvůj deck</h2>
-
+        <section className='row workon'>
+        
         <div>
+          {deckName && <div><h4>{deckName}</h4>
+          <button onClick={saveCards} className='mb-1'>Save your cards</button></div>}
+
           {deckID === false ? <p>Vyberte váš balíček</p> : 
           
             <div className='cards'>
@@ -121,9 +123,6 @@ const SortableList = () => {
             
             </div>}
 
-          <div>
-            <button onClick={saveCards}>Save your cards</button>
-          </div>
         </div>
 
         </section>
