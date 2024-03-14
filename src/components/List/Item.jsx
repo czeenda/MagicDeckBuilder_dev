@@ -36,17 +36,21 @@ const Item = ({ id, name, url, index, moveItem, handleRemoveClick }) => {
   
     return (
       <>
-      <div
+
+      <span class="card-box d-inline-block"
         ref={dragRef}
         style={{
           opacity: isDragging ? 0.5 : 1,
           cursor: 'move'
         }}
       >
-        <img src={url} className='card' />
-        <span className='d-none'>{id + 1} {name} {url}</span>
-      </div>
-      <span onClick={() => handleRemoveClick(id)}>X</span>
+        <span className='card-content' onClick={() => handleRemoveClick(id)}>
+          <img src={url} className='card' />
+        {/* {id + 1} {name} {url} */}
+        </span>
+      </span>
+      
+
       </>
 
     );

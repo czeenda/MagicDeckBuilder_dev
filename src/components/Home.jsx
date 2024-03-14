@@ -133,11 +133,15 @@ const Home = () => {
 
 			
 
-			{decks === false ? <p>Načítání dat...</p> : <div>{decks.map(element => 
+			{decks === false ? <p>Načítání dat...</p> : 
 			
+			
+			<div className='row mt-1'>
 				
-				<div key={element.id}>
-				Jméno balíčku: {element.name} <span onClick={() => handleItemClick(element)}>Zobrazit</span> | 
+				{decks.map(element => 
+			
+				<div className='col-3 deck m-1 p-1 bg-white' key={element.id}>
+				<h4>{element.name}</h4> <span onClick={() => handleItemClick(element)}>Zobrazit</span> | 
 				<Link to="/deckbuilder"><span onClick={() => handleItemClick(element)}> Upravit</span></Link> |
 				<span onClick={() => deleteDeck(element)}> Smazat</span>
 				</div>

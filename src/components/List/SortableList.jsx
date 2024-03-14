@@ -107,20 +107,27 @@ const SortableList = () => {
     if(auth){
     return (
       <>
+        <section className='row'>
         <h2>Tvůj deck</h2>
+
+        <div>
+          {deckID === false ? <p>Vyberte váš balíček</p> : 
+          
+            <div className='cards'>
+
+            {deck.map((item, index) => (
+              <Item key={index} id={index} name={item.name} url={item.image_url} index={index} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
+            ))}
+            
+            </div>}
+
+          <div>
+            <button onClick={saveCards}>Save your cards</button>
+          </div>
+        </div>
+
+        </section>
         
-        <div>
-        {deckID === false ? <p>Vyberte váš balíček</p> : <>
-
-          {deck.map((item, index) => (
-            <Item key={index} id={index} name={item.name} url={item.image_url} index={index} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
-          ))}</>}
-
-        <div>
-          <button onClick={saveCards}>Save your cards</button>
-        </div>
-
-        </div>
       </>
     )}
   };

@@ -21,11 +21,11 @@ function App() {
 
 
   return (
-    <section>
-      <div className="container-xl">
+    <section className='h-100 m-1'>
+      <div className="container-xl p-1">
         <div className="row">
           <div className="col-12">
-            <nav class="mt-2">
+            <nav className='m-0'>
               <h1>Magic Deck Builder</h1>
               <Link to="/">Home</Link> |   
               <Link to="/editions">Editions</Link> | 
@@ -38,7 +38,7 @@ function App() {
           </div>
         </div>
             <MyContextProvider>
-          <div className="row">
+          <div className="row mt-1">
             <div className="col-8">
             <Routes>
               <Route element={<AuthRoute />}>

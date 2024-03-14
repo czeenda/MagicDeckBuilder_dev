@@ -1,2 +1,2 @@
-body{background-color:#fafad2}body img.icon{height:80px}body img.card{width:100px}
+body{background-image:url(".././assets/back.jpg");background-size:cover}body .container-xl{background:rgba(255,255,255,.8);-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);border:solid 1px #000;border-radius:1rem}body img.icon{height:80px}body img.card{width:100px}body .deck{border:solid 1px gray;border-radius:1rem}
 /*# sourceMappingURL=styles.min.css.map */

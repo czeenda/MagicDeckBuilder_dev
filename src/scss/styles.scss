@@ -1,14 +1,10 @@
-// Import all of Bootstrap's CSS
-@import "bootstrap/scss/bootstrap";
-
-
-
 body{
-    background-color: black;
+    background-image: url(".././assets/back.jpg");
+    background-size: cover;
     .container-xl{
-        background-color: lightgoldenrodyellow;
-        min-height: 100vh;
-        margin-top: 5rem;
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: saturate(180%) blur(10px);
+        border: solid 1px black;
         border-radius: 1rem;
     }
 
@@ -18,4 +14,10 @@ body{
     img.card{
         width: 100px
     }
+
+    .deck{
+        border: solid 1px gray;
+        border-radius: 1rem;
+    }
+
 }
