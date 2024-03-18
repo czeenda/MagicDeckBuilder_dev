@@ -138,7 +138,7 @@ const SortableList = () => {
           <div className='w-100 d-flex flex-rows'>
 
             {/* <h4 className='d-inline-block my-auto'>{newDeckName}</h4> */}
-            <div className="input-group w-50">
+            <div className="input-group">
   				    <input type="text" className="form-control border" placeholder="Name of new deck" aria-label="Recipient's username" aria-describedby="button-addon2"
 				      value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} />
   				    <button className="btn btn-outline-secondary" type="button" /* id="button-addon2" */ onClick={handleRename}>Přejmenovat</button>

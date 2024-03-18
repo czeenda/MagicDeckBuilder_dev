@@ -138,13 +138,26 @@ body #workon .full:hover .x {
   color: white;
   background: black;
 }
+body #workon .input-group {
+  width: 22rem;
+}
+body #workon .input-group .form-control.border {
+  border: solid 0px gray !important;
+  background: transparent;
+  font-weight: bold;
+  font-size: 18px;
+}
+body #workon .input-group .form-control:focus {
+  border: solid 1px gray !important;
+  outline: none;
+}
 body .dragable {
   top: 0;
 }
 
 @media all and (max-width: 1600px) {
   html {
-    font-size: 100%;
+    font-size: 90%;
   }
 }
 /*# sourceMappingURL=styles.css.map */

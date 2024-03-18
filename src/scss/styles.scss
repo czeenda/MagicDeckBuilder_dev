@@ -159,6 +159,20 @@ body{
                 
             }
         }
+        .input-group{
+            width: 22rem;
+            .form-control.border {
+                border: solid 0px gray !important;
+                background: transparent;
+                font-weight: bold;
+                font-size: 18px;   
+            }
+            .form-control:focus{
+                border: solid 1px gray !important;
+                outline: none;
+            }
+        }
+        
     }
     
     .dragable{
@@ -169,6 +183,6 @@ body{
 
 @media all and (max-width: 1600px) {
     html {
-      font-size: 100%;
+      font-size: 90%;
     }
   }
