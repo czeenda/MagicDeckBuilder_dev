@@ -29,13 +29,12 @@ export const Register = () => {
 			<h2>Registrace</h2>
 
 			<form>
-				<input type="text" value={email} onChange={(event) => setEmail(event.target.value)} />
-				<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-				{email}
-				{password}
+				<input type="text" className='form-control border mb-11' value={email} onChange={(event) => setEmail(event.target.value)} />
+				<input type="password" className='form-control border mb-11' value={password} onChange={(event) => setPassword(event.target.value)} />
+				
 			</form>
 
-			<button onClick={handleClick}>Registrovat</button>
+			<button className="btn btn-secondary" onClick={handleClick}>Registrovat</button>
 
 		</>
 	)

@@ -1,6 +1,9 @@
 import {useContext, useEffect, useState} from 'react';
 import {MyContext} from '../../context/MyContext'
 
+import {supabase} from '../../supabase/client'
+
+
 import {useAuth} from '../../context/AuthProvider'
 
 
@@ -15,6 +18,7 @@ const Preview = () => {
 	const { deckName, setDeckName} = useContext(MyContext)
 
 	const { cardPreview, setCardPreview} = useContext(MyContext)
+
 
   useEffect(() => {
 		const loadData = async () => {
@@ -44,13 +48,23 @@ const Preview = () => {
 		loadData();
 	}, [deckID])
 
+	const empty = () => {
+		logout()
+		setDeckID(false)
+		setDeckName(false)
+	  }
+
   
     if(auth){
     return (
       <>
-        <section className='row preview'>
+        <section id='preview'>
+			
+			<div className='w-100 px-1 mt-12'>
+				<img src={cardPreview} alt="" className='magic mt-3 me-1' />
+			</div>
 
-        <img src={cardPreview} alt="" className='magic' />
+        
 
         </section>
         

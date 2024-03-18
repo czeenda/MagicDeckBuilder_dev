@@ -1,12 +1,12 @@
 import {useContext, useEffect} from 'react';
-import {MyContext} from './../context/MyContext'
+import {MyContext} from '../context/MyContext'
 
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import {useAuth} from '../context/AuthProvider'
 
-import {supabase} from './../supabase/client'
+import {supabase} from '../supabase/client'
 
 import SortableListApp from './List/SortableListApp';
 

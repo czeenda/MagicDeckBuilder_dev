@@ -9,7 +9,7 @@ import Home from './components/Home'
 import Editions from './components/Editions'
 import DeckBuilder from './components/DeckBuilder'
 import About from './components/About'
-import WorkOnSidebar from './components/WorkOnSidebar'
+import Header from './components/Header'
 
 import Contacts from './components/Contacts'
 
@@ -22,25 +22,14 @@ function App() {
 
 
   return (
-    <section className='h-100 p-1'>
-      <div className="container-xl p-1">
-        <div className="row">
-          <div className="col-12">
-            <nav className='m-0'>
-              <h1>Magic Deck Builder</h1>
-              <Link to="/">Home</Link> |   
-              <Link to="/editions">Editions</Link> | 
-              <Link to="/deckbuilder">Deck Builder</Link> |
-              <Link to="/about">About</Link> |
-              <Link to="/contacts">Contacts</Link> |
-              <Link to="/login">Login</Link> |
-              <Link to="/register">Register</Link> |
-            </nav>
-          </div>
-        </div>
+    //<section className='p-1' style={{height: window.innerHeight}}>
+      <div className="container-fluid pb-1 my-2" id="app">
+
+            <Header />
+
             <MyContextProvider>
           <div className="row mt-1">
-            <div className="col-6">
+            <div className="col-3">
             <Routes>
               <Route element={<AuthRoute />}>
 
@@ -58,10 +47,10 @@ function App() {
 
 
             </div>
-            <div className="col-6">
+            <div className="col-9">
               <div className="row">
-                <div className="col-6"><SortableListApp/></div>
-                <div className="col-6"><Preview/></div>
+                <div className="col-3"><Preview/></div>
+                <div className="col-9 ps-0"><SortableListApp/></div>
               </div>
             
             </div>
@@ -70,7 +59,7 @@ function App() {
     </div>
      
 
-    </section>
+    //</section>
   )
 }
 

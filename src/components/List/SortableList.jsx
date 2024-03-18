@@ -1,4 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
+import {Link} from 'react-router-dom'
+
 import {MyContext} from '../../context/MyContext'
 
 import {useAuth} from '../../context/AuthProvider'
@@ -16,6 +18,8 @@ const SortableList = () => {
 	const { deckID, setDeckID} = useContext(MyContext)
 
 	const { deckName, setDeckName} = useContext(MyContext)
+
+  const [ newDeckName, setNewDeckName] = useState(deckName)
 
   useEffect(() => {
 		const loadData = async () => {
@@ -44,6 +48,8 @@ const SortableList = () => {
 
 		loadData();
 	}, [deckID])
+
+  //const lands = deck.filter((element) => element.type.includes("Land"))
 
   const saveCards = async () => {
 		try {
@@ -78,15 +84,6 @@ const SortableList = () => {
 		  console.log(error);
 		}
 	  };
-
-  
- /*  const [deck, setDeck] = useState([
-      { id: 1, text: 'Item 1', url: "url", code: 'blb' },
-      { id: 2, text: 'Item 2', url: "url", code: 'blb' },
-      { id: 3, text: 'Item 3', url: "url", code: 'blb' },
-      { id: 4, text: 'Item 4', url: "url", code: 'blb' },
-      { id: 5, text: 'Item 5', url: "url", code: 'blb' }, 
-    ]); */
   
     const moveItem = (dragIndex, hoverIndex) => {
       const draggedItem = deck[dragIndex];
@@ -103,31 +100,51 @@ const SortableList = () => {
       setDeck(updatedDeck);
       console.log(id)
     };
+
+    
   
     if(auth){
     return (
-      <>
-        <section className='row workon'>
+        <div id="workon">
         
-        <div>
-          {deckName && <div><h4>{deckName}</h4>
-          <button onClick={saveCards} className='mb-1'>Save your cards</button></div>}
-
-          {deckID === false ? <p>Vyberte váš balíček</p> : 
+          {deckName && 
           
-            <div className='cards'>
+          <div className='w-100 d-flex flex-rows'>
+            <h4 className='d-inline-block my-auto'>{deckName}</h4>
+            <div className="input-group w-50">
+  				    <input type="text" className="form-control border" placeholder="Name of new deck" aria-label="Recipient's username" aria-describedby="button-addon2"
+				      value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} />
+  				    <button className="btn btn-outline-secondary" type="button" id="button-addon2" /* onClick={handleAddDeck} */>Vytvořit</button>
+			    </div>
+            <button onClick={saveCards} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button>
+            
+            
+	        </div>}
+
+          {deckID === false ? <Link to="/">Vyberte váš balíček</Link> : 
+          <div>
+            <div className='cards mt-1'>
 
             {deck.map((item, index) => (
-              <Item key={index} id={index} name={item.name} url={item.image_url} index={index} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
+              <Item key={index} id={index} name={item.name} url={item.image_url} index={index} type={item} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
             ))}
+            
+            </div>
+
+            {/* <div className='cards creatures'>
+
+            {deck.map((item, index) => (
+              <Item key={index} id={index} name={item.name} url={item.image_url} index={index} type={item} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
+            ))}
+            
+            </div> */}
             
             </div>}
 
-        </div>
-
-        </section>
         
-      </>
+
+        </div>
+        
     )}
   };
 

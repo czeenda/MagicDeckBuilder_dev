@@ -30,8 +30,8 @@ const Editions = () => {
 	}, [])
 
 	return (
-		<section className='editions'>
-			<h2>Edice</h2>
+		<section id='editions'>
+			<h3>Edice</h3>
 			<p>Vydané od {dateEdition}</p>
 			
 			<div className="container-lg">
@@ -40,17 +40,18 @@ const Editions = () => {
 					{magic === false ? <p>Načítání dat...</p> :
             		<div className="row">
                 		{magic.map((element) => (
-						<div className="col-3 text-center mt-2" key={element.id} onClick={() => setEdition({name: `${element.name}`, code: `${element.code}`, imgUrl: `${element.icon_svg_uri}`})}>
+							<Link to="/deckbuilder">
+						<div className="col-12 edition d-flex flex-rows justify-content-start align-items-center" key={element.id} onClick={() => setEdition({name: `${element.name}`, code: `${element.code}`, imgUrl: `${element.icon_svg_uri}`})}>
 									
-								<Link to="/deckbuilder">
-									<div>
+								
+									
 										<img src={element.icon_svg_uri} className='icon' />
-										<h5 className="mt-1">{element.name}</h5>
-									</div>
-								</Link>
+										<h6 className="mb-0 ms-1">{element.name}</h6>
+									
+								
 
 						
-						</div>))}
+						</div></Link>))}
             		</div>}
 				
 				</div>

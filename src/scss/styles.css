@@ -1,26 +1,74 @@
 #root {
-  min-height: 100%;
+  height: calc(100vh - 4rem);
+}
+
+.bg-gray {
+  background-color: #212529;
+}
+
+.c-white {
+  color: aliceblue;
+}
+
+.form-control.border {
+  border: solid 1px gray !important;
+}
+
+nav a {
+  color: navy;
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: underline;
 }
 
 body {
   background-image: url(".././assets/back.jpg");
   background-size: cover;
-  height: 100vh;
+  /* section{
+      height: 100vh;
+  } */
 }
-body .container-xl {
+body .container-fluid {
   background: rgba(255, 255, 255, 0.8);
   -webkit-backdrop-filter: saturate(180%) blur(10px);
           backdrop-filter: saturate(180%) blur(10px);
-  border: solid 1px black;
   border-radius: 1rem;
+  max-width: 1600px;
   height: 100%;
+}
+body #app .corners {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 body img.icon {
   height: 80px;
 }
-body .preview img.magic {
-  width: 300px;
+body #preview img.magic {
+  width: 100%;
   border-radius: 0.6rem;
+}
+body #home .deck-box {
+  border: solid 1px gray;
+  border-radius: 0.6rem;
+}
+body #home img.deck {
+  height: 5rem;
+  cursor: pointer;
+}
+body #home a {
+  color: navy;
+  text-decoration: none;
+}
+body #home a:hover {
+  text-decoration: underline;
+}
+body .deckbuilder .card-section {
+  border: solid 1px black;
+  height: 50vh;
+  overflow-y: auto;
+  border-bottom-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
 }
 body .deckbuilder img.magic {
   width: 100px;
@@ -30,32 +78,49 @@ body .deckbuilder img.magic {
 body .deckbuilder img.magic:hover {
   transform: scale(1.5);
 }
-body .editions a {
+body #editions .edition {
+  height: 3rem;
+}
+body #editions a {
   color: black;
   text-decoration: none;
 }
-body .workon img.magic {
+body #editions a:hover {
+  text-decoration: underline;
+}
+body #editions .icon {
+  width: 2rem;
+}
+body #editions .container-lg {
+  height: 60vh;
+  border: solid 1px red;
+  overflow-y: auto;
+}
+body #workon img.magic {
   width: 12.5rem;
   border-radius: 0.6rem;
 }
-body .workon .cards {
+body #workon .cards {
   position: relative;
 }
-body .workon .card-box {
+body #workon .creatures {
+  margin-left: 13rem;
+}
+body #workon .card-box {
   position: absolute;
   border-radius: 0.6rem;
 }
-body .workon .full {
+body #workon .full {
   border-radius: 0.6rem;
 }
-body .workon .full .card-x {
+body #workon .full .card-x {
   top: 0;
   right: 0;
   width: 100%;
   height: 2rem;
   border-radius: 0.6rem;
 }
-body .workon .full .x {
+body #workon .full .x {
   position: absolute;
   right: 0;
   top: 0;
@@ -64,16 +129,13 @@ body .workon .full .x {
   border-top-right-radius: 0.6rem;
   border-bottom-left-radius: 0.6rem;
   color: transparent;
+  cursor: pointer;
 }
-body .workon .full:hover .x {
+body #workon .full:hover .x {
   color: white;
   background: black;
 }
 body .dragable {
   top: 0;
-}
-body .deck {
-  border: solid 1px gray;
-  border-radius: 1rem;
 }
 /*# sourceMappingURL=styles.css.map */
