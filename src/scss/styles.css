@@ -78,6 +78,9 @@ body .deckbuilder img.magic {
 body .deckbuilder img.magic:hover {
   transform: scale(1.5);
 }
+body .deckbuilder .mana {
+  height: 1rem;
+}
 body #editions .edition {
   height: 3rem;
 }
