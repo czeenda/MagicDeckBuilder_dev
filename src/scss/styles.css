@@ -141,4 +141,10 @@ body #workon .full:hover .x {
 body .dragable {
   top: 0;
 }
+
+@media all and (max-width: 1600px) {
+  html {
+    font-size: 100%;
+  }
+}
 /*# sourceMappingURL=styles.css.map */
