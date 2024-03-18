@@ -90,7 +90,7 @@ body{
             transform: scale(1.5);
         }
         .mana{
-            height: 1rem;
+            height: 16px;
         }
     }
 
@@ -110,8 +110,8 @@ body{
         }
         .container-lg{
             height: 60vh;
-    border: solid 1px red;
-    overflow-y: auto;
+            border: solid 1px red;
+            overflow-y: auto;
         }
     }
 
@@ -164,11 +164,7 @@ body{
     .dragable{
         top: 0
     }
-
-    
-
 }
-
 
 
 @media all and (max-width: 1600px) {
