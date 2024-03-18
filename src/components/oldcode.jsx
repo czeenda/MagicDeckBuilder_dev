@@ -21,3 +21,9 @@
   
 
           </>}
+
+
+
+{deck.filter((element) => element.type.includes("Land")).map((item, index) => (
+  <Item key={index} id={index} name={item.name} url={item.image_url} index={index} type={item.type} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
+))}
