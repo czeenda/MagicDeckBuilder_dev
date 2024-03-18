@@ -11,7 +11,7 @@ import Item from './Item'
 
 const SortableList = () => {
     
-  const {auth, user, logout} = useAuth()
+  	const {auth, user, logout} = useAuth()
 
 	const {deck, setDeck} = useContext(MyContext)
 
@@ -19,7 +19,10 @@ const SortableList = () => {
 
 	const { deckName, setDeckName} = useContext(MyContext)
 
-  const [ newDeckName, setNewDeckName] = useState(deckName)
+  	const [ newDeckName, setNewDeckName] = useState(deckName)
+
+  	const { renamed, setRenamed} = useContext(MyContext)
+
 
   useEffect(() => {
 		const loadData = async () => {
@@ -49,41 +52,45 @@ const SortableList = () => {
 		loadData();
 	}, [deckID])
 
+	useEffect(() => {
+		setNewDeckName(deckName)
+	}, [deckID])
+
   //const lands = deck.filter((element) => element.type.includes("Land"))
 
-  const saveCards = async () => {
-		try {
-		  // Delete cards with the specified deck_id
-		  const deleteResult = await supabase
-			.from('Cards')
-			.delete()
-			.eq('deck_id', deckID);
-	  
-		  // Check for errors in the delete operation
-		  if (deleteResult.error) {
-			console.log(deleteResult.error);
-			return; // Exit the function if there's an error in the delete operation
-		  }
-	  
-		  console.log("Deleted existing cards for deck_id:", deckID);
-	  
-		  // Insert new cards into the 'Cards' table
-		  const insertResult = await supabase
-			.from('Cards')
-			.insert(deck);
-	  
-		  // Check for errors in the insert operation
-		  if (insertResult.error) {
-			console.log(insertResult.error);
-		  } else {
-			console.log("Inserted new cards for deck_id:", deckID);
-			// setDecks(insertResult.data) // Uncomment and modify as needed
-			console.log(insertResult.data);
-		  }
-		} catch (error) {
-		  console.log(error);
-		}
-	  };
+	const saveCards = async () => {
+			try {
+			// Delete cards with the specified deck_id
+			const deleteResult = await supabase
+				.from('Cards')
+				.delete()
+				.eq('deck_id', deckID);
+		
+			// Check for errors in the delete operation
+			if (deleteResult.error) {
+				console.log(deleteResult.error);
+				return; // Exit the function if there's an error in the delete operation
+			}
+		
+			console.log("Deleted existing cards for deck_id:", deckID);
+		
+			// Insert new cards into the 'Cards' table
+			const insertResult = await supabase
+				.from('Cards')
+				.insert(deck);
+		
+			// Check for errors in the insert operation
+			if (insertResult.error) {
+				console.log(insertResult.error);
+			} else {
+				console.log("Inserted new cards for deck_id:", deckID);
+				// setDecks(insertResult.data) // Uncomment and modify as needed
+				console.log(insertResult.data);
+			}
+			} catch (error) {
+			console.log(error);
+			}
+		};
   
     const moveItem = (dragIndex, hoverIndex) => {
       const draggedItem = deck[dragIndex];
@@ -101,6 +108,25 @@ const SortableList = () => {
       console.log(id)
     };
 
+	
+	const handleRename = async () => {
+		const { data, error } = await supabase
+		.from('Decks')
+		.update({ name: newDeckName})
+		.eq('id', deckID)
+		.select()
+
+		setRenamed(data)
+
+		
+		if (error) {
+			console.error(error);
+		} else {
+			console.log(data);
+		}
+
+	};
+
     
   
     if(auth){
@@ -110,12 +136,14 @@ const SortableList = () => {
           {deckName && 
           
           <div className='w-100 d-flex flex-rows'>
-            <h4 className='d-inline-block my-auto'>{deckName}</h4>
+
+            {/* <h4 className='d-inline-block my-auto'>{newDeckName}</h4> */}
             <div className="input-group w-50">
   				    <input type="text" className="form-control border" placeholder="Name of new deck" aria-label="Recipient's username" aria-describedby="button-addon2"
 				      value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} />
-  				    <button className="btn btn-outline-secondary" type="button" id="button-addon2" /* onClick={handleAddDeck} */>Vytvořit</button>
+  				    <button className="btn btn-outline-secondary" type="button" /* id="button-addon2" */ onClick={handleRename}>Přejmenovat</button>
 			    </div>
+
             <button onClick={saveCards} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button>
             
             

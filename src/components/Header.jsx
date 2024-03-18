@@ -1,19 +1,25 @@
 import {Routes, Route, Link} from 'react-router-dom'
+import {useContext} from 'react';
 
 import { useAuth } from "../context/AuthProvider";
 
-import {useContext} from 'react';
 import {MyContext} from '../context/MyContext'
 
 const Header = () => {
 
 	const {auth, user, logout} = useAuth()
+	
+	const { deckID, setDeckID} = useContext(MyContext)
+
+	const { deckName, setDeckName} = useContext(MyContext)
 
 	const empty = () => {
 		logout()
 		setDeckID(false)
 		setDeckName(false)
 		}
+	
+
 	return (
 		<>
 			<div className="row corners">

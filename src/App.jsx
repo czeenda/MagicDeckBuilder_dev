@@ -24,10 +24,8 @@ function App() {
   return (
     //<section className='p-1' style={{height: window.innerHeight}}>
       <div className="container-fluid pb-1 my-2" id="app">
-
+        <MyContextProvider>
             <Header />
-
-            <MyContextProvider>
           <div className="row mt-1">
             <div className="col-3">
             <Routes>

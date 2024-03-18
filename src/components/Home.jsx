@@ -23,6 +23,8 @@ const Home = () => {
 
 	const { deckName, setDeckName} = useContext(MyContext)
 
+	const { renamed, setRenamed} = useContext(MyContext)
+
 	//work const
 	const [ work, setWork] = useState(null)
 
@@ -36,13 +38,13 @@ const Home = () => {
 					.eq('user_id', user.id)
 					
 
-					console.log("ok")
+					//console.log("načteny balíčky")
 
 					if (error) {
 					console.log(error)
 				} else {
-					console.log("funguje")
 					setDecks(data)
+					console.log("Načteno pole balíčků")
 					console.log(data)
 
 				}
@@ -53,7 +55,7 @@ const Home = () => {
 		}
 
 		loadData();
-	},[work])
+	},[work, renamed])
 
 	const handleAddDeck = async () => {
 		
