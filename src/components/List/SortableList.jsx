@@ -50,11 +50,16 @@ const SortableList = () => {
 		}
 
 		loadData();
+		
 	}, [deckID])
 
 	useEffect(() => {
 		setNewDeckName(deckName)
 	}, [deckID])
+
+	useEffect(() => {
+		console.log(deck)
+	},[deck])
 
   //const lands = deck.filter((element) => element.type.includes("Land"))
 
@@ -100,6 +105,7 @@ const SortableList = () => {
         newItems.splice(hoverIndex, 0, draggedItem);
         return newItems;
       });
+	  console.log(deck)
     };
 
     const handleRemoveClick = (id) => {

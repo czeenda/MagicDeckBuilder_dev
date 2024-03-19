@@ -34,7 +34,8 @@ const DeckBuilder = () => {
 			const data = await response.json()
 
 
-			setMagic(data.data)			
+			setMagic(data.data)	
+			console.log(magic)		
 
 		}
 		loadCards()
@@ -58,6 +59,7 @@ const DeckBuilder = () => {
 			(<div key={id} className="item">
 
 				<div className="p-11 d-flex flex-rows justify-content-between" onClick={() => setDeck([...deck, {
+					id: `${Math.floor(Math.random() * 10000001)}`, /* ${Math.floor(Math.random() * 10001)} */
 					card_id: `${element.id}`,
 					name: `${element.name}`, 
 					deck_id: `${deckID}`, 
