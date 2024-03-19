@@ -42,7 +42,7 @@ const DeckBuilder = () => {
 
 
 	return (
-		<section className="deckbuilder">	
+		<section id="deckbuilder">	
 			{/* <p>User: ID {user.id}</p> */}
 			<h3>DeckBuilder</h3>
 			<div className="mb-1"><Link to="/">Zpět na výběr balíku</Link></div>
@@ -55,7 +55,7 @@ const DeckBuilder = () => {
 
 			<>{magic.map((element, id) => 
 
-			(<div key={id}>
+			(<div key={id} className="item">
 
 				<div className="p-11 d-flex flex-rows justify-content-between" onClick={() => setDeck([...deck, {
 					card_id: `${element.id}`,

@@ -64,20 +64,26 @@ body #preview img.magic {
   width: 100%;
   border-radius: 0.6rem;
 }
-body .deckbuilder .card-section {
+body #deckbuilder .card-section {
   border: solid 1px black;
   overflow-y: auto;
   border-radius: 0.6rem;
 }
-body .deckbuilder img.magic {
+body #deckbuilder .item {
+  cursor: pointer;
+}
+body #deckbuilder .item:hover div {
+  text-decoration: underline;
+}
+body #deckbuilder img.magic {
   width: 100px;
   border-radius: 0.3rem;
   transition: scale 0.3s;
 }
-body .deckbuilder img.magic:hover {
+body #deckbuilder img.magic:hover {
   transform: scale(1.5);
 }
-body .deckbuilder .mana {
+body #deckbuilder .mana {
   height: 16px;
 }
 body #editions .edition {

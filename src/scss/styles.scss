@@ -73,11 +73,18 @@ body{
             border-radius: $border-radius;
         }
     }
-    .deckbuilder{
+    #deckbuilder{
         .card-section{
             border: solid 1px black;
             overflow-y: auto;
             border-radius: $border-radius;
+        }
+        .item{
+            cursor: pointer;
+            &:hover{
+            div{
+                text-decoration: underline;
+            }}
         }
         img.magic{
             width: 100px;
