@@ -50,16 +50,11 @@ body{
     img.icon{
         height: 80px
     }
-    #preview{
-        img.magic{
-            width: 100%;
-            border-radius: $border-radius;
-        }
-    }
     #home{
         .deck-box{
             border: solid 1px gray;
-            border-radius: $border-radius
+            border-radius: $border-radius;
+            height: 8rem;
         }
         img.deck{
             height: 5rem;
@@ -72,13 +67,17 @@ body{
             }
         }
     }
+    #preview{
+        img.magic{
+            width: 100%;
+            border-radius: $border-radius;
+        }
+    }
     .deckbuilder{
         .card-section{
             border: solid 1px black;
-            height: 50vh;
             overflow-y: auto;
-            border-bottom-left-radius: $border-radius;
-            border-top-right-radius: $border-radius;
+            border-radius: $border-radius;
         }
         img.magic{
             width: 100px;
@@ -109,9 +108,9 @@ body{
             width: 2rem
         }
         .container-lg{
-            height: 60vh;
-            border: solid 1px red;
+            border: solid 1px black;
             overflow-y: auto;
+            border-radius: $border-radius;
         }
     }
 
@@ -183,6 +182,6 @@ body{
 
 @media all and (max-width: 1600px) {
     html {
-      font-size: 90%;
+      font-size: 80%;
     }
   }

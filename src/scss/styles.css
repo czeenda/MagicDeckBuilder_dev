@@ -44,13 +44,10 @@ body #app .corners {
 body img.icon {
   height: 80px;
 }
-body #preview img.magic {
-  width: 100%;
-  border-radius: 0.6rem;
-}
 body #home .deck-box {
   border: solid 1px gray;
   border-radius: 0.6rem;
+  height: 8rem;
 }
 body #home img.deck {
   height: 5rem;
@@ -63,12 +60,14 @@ body #home a {
 body #home a:hover {
   text-decoration: underline;
 }
+body #preview img.magic {
+  width: 100%;
+  border-radius: 0.6rem;
+}
 body .deckbuilder .card-section {
   border: solid 1px black;
-  height: 50vh;
   overflow-y: auto;
-  border-bottom-left-radius: 0.6rem;
-  border-top-right-radius: 0.6rem;
+  border-radius: 0.6rem;
 }
 body .deckbuilder img.magic {
   width: 100px;
@@ -95,9 +94,9 @@ body #editions .icon {
   width: 2rem;
 }
 body #editions .container-lg {
-  height: 60vh;
-  border: solid 1px red;
+  border: solid 1px black;
   overflow-y: auto;
+  border-radius: 0.6rem;
 }
 body #workon img.magic {
   width: 12.5rem;
@@ -157,7 +156,7 @@ body .dragable {
 
 @media all and (max-width: 1600px) {
   html {
-    font-size: 90%;
+    font-size: 80%;
   }
 }
 /*# sourceMappingURL=styles.css.map */

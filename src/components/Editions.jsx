@@ -29,12 +29,14 @@ const Editions = () => {
 		loadCards()
 	}, [])
 
+	//let height = window.innerHeight;
+
 	return (
 		<section id='editions'>
 			<h3>Edice</h3>
 			<p>Vydané od {dateEdition}</p>
 			
-			<div className="container-lg">
+			<div className="container-lg" style={{height: `${innerHeight - 300}px`}}>
 				<div className="row">
 
 					{magic === false ? <p>Načítání dat...</p> :

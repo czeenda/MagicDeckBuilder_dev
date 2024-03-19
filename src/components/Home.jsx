@@ -121,7 +121,7 @@ const Home = () => {
 
 
 	return (
-		<section id='home'>
+		<section id='home' className='h-100'>
 			<h3>Balíčky</h3>
 			{/* {user.id} */}
 			
@@ -142,7 +142,7 @@ const Home = () => {
 					<div className="row mx-0">
 				{decks.map(element => 
 			
-				<div className='col-12 mt-1 p-1 deck-box p-1 bg-white w-100 d-flex flex-rows' key={element.id}>
+				<div className='mt-1 p-1 deck-box p-1 bg-white w-100 d-flex flex-rows' key={element.id}>
 
 					<img src={myDeck} className="deck my-auto" onClick={() => handleItemClick(element)}/>
 					
