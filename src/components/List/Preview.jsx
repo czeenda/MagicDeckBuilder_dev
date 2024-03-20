@@ -24,7 +24,7 @@ const Preview = () => {
 		const loadData = async () => {
 			try {
 				const {data, error} = await supabase
-					.from('Cards')
+					.from('Cards2')
 					.select('*')
 					.eq('deck_id', deckID)
 					

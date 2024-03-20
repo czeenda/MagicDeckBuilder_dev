@@ -6,8 +6,16 @@ import blackUrl from '../assets/mana/swamp.svg';
 import redUrl from '../assets/mana/mountain.svg';
 import greenUrl from '../assets/mana/forest.svg';
 
+import colorlessUrl from '../assets/mana/colorless/1.svg'
+
 
 const SelectCardItem = ({name, mana}) => {
+
+	let colorless
+
+	if(mana.includes(`{1}`)){
+		colorless = <img src={colorlessUrl} className='mana' />
+	}
 
 	let white
 
@@ -73,7 +81,7 @@ const SelectCardItem = ({name, mana}) => {
 		<>
 			<h6 className="mb-0">{name}</h6>
 				<span>
-				{/* {blue}{red}{white}{black}{green} */}
+				{colorless}{blue}{red}{white}{black}{green}
 					
 
 				</span>

@@ -91,7 +91,7 @@ const Home = () => {
 	
 			// Delete cards associated with the deck from 'Cards' table
 			const { data: deletedCards, error: cardsError } = await supabase
-				.from('Cards')
+				.from('Cards2')
 				.delete()
 				.eq('deck_id', element.id);
 	

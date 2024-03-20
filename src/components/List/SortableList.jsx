@@ -28,7 +28,7 @@ const SortableList = () => {
 		const loadData = async () => {
 			try {
 				const {data, error} = await supabase
-					.from('Cards')
+					.from('Cards2')
 					.select('*')
 					.eq('deck_id', deckID)
 					
@@ -67,7 +67,7 @@ const SortableList = () => {
 			try {
 			// Delete cards with the specified deck_id
 			const deleteResult = await supabase
-				.from('Cards')
+				.from('Cards2')
 				.delete()
 				.eq('deck_id', deckID);
 		
@@ -81,7 +81,7 @@ const SortableList = () => {
 		
 			// Insert new cards into the 'Cards' table
 			const insertResult = await supabase
-				.from('Cards')
+				.from('Cards2')
 				.insert(deck);
 		
 			// Check for errors in the insert operation
