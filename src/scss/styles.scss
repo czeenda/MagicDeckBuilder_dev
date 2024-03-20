@@ -66,6 +66,13 @@ body{
                 text-decoration: underline;
             }
         }
+        .delete{
+            color: navy;
+            cursor: pointer;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
     }
     #preview{
         img.magic{

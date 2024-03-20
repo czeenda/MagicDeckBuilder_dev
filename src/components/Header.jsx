@@ -1,4 +1,4 @@
-import {Routes, Route, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {useContext, useEffect ,useRef} from 'react';
 
 import { useAuth } from "../context/AuthProvider";
@@ -22,13 +22,11 @@ const Header = () => {
 	}
 
 	useEffect(() => {
-    if (menuRef.current) {
-      const menuHeight = menuRef.current.offsetHeight;
-      console.log("Menu height:", menuHeight);
-    }
-  }, []); // This effect runs only once after the component mounts
-
-	
+		if (menuRef.current) {
+		  const menuHeight = menuRef.current.offsetHeight;
+		  console.log("Výška menu:", menuHeight + "px");
+		}
+	  });
 
 	return (
 		<>

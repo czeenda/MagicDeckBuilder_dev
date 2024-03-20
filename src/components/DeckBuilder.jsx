@@ -24,6 +24,8 @@ const DeckBuilder = () => {
 
 	const { cardPreview, setCardPreview} = useContext(MyContext)
 
+	const [ topSpace, setTopSpace] = useState(380)
+
 
 
     // loading vybrané edice
@@ -41,6 +43,13 @@ const DeckBuilder = () => {
 		loadCards()
 	}, [])
 
+	useEffect(() => {
+		const width = window.innerWidth
+		if(width <= 1600){
+			setTopSpace(304)
+		}
+	})
+
 
 	return (
 		<section id="deckbuilder">	
@@ -50,7 +59,7 @@ const DeckBuilder = () => {
 			<div className="mb-1"><Link to="/editions">Zpět na výběr edice</Link></div>
 			<p>Vybraná edice: <strong>{edition.name}</strong></p>
 
-			<div className="card-section" style={{height: `${innerHeight - 380}px`}}>
+			<div className="card-section" style={{height: `${innerHeight - topSpace}px`}}>
 
 			{magic === false ? <p>Načítání dat</p> : 
 

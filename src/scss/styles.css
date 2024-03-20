@@ -60,6 +60,13 @@ body #home a {
 body #home a:hover {
   text-decoration: underline;
 }
+body #home .delete {
+  color: navy;
+  cursor: pointer;
+}
+body #home .delete:hover {
+  text-decoration: underline;
+}
 body #preview img.magic {
   width: 100%;
   border-radius: 0.6rem;

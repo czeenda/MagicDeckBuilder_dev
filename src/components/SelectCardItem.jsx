@@ -73,7 +73,7 @@ const SelectCardItem = ({name, mana}) => {
 		<>
 			<h6 className="mb-0">{name}</h6>
 				<span>
-					{white}{blue}{black}{red}{green}
+				{/* {blue}{red}{white}{black}{green} */}
 					
 
 				</span>

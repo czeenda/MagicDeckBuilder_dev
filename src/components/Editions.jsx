@@ -13,6 +13,8 @@ const Editions = () => {
 	const [magic, setMagic] = useState(false)
 
 	const [ dateEdition, setDateEdition] = useState("2024-01-01")
+
+	const [ topSpace, setTopSpace] = useState(300)
     
     useEffect(() => {
 		const loadCards = async () => {
@@ -29,6 +31,13 @@ const Editions = () => {
 		loadCards()
 	}, [])
 
+	useEffect(() => {
+		const width = window.innerWidth
+		if(width <= 1600){
+			setTopSpace(240)
+		}
+	})
+
 	//let height = window.innerHeight;
 
 	return (
@@ -36,7 +45,7 @@ const Editions = () => {
 			<h3>Edice</h3>
 			<p>Vydané od {dateEdition}</p>
 			
-			<div className="container-lg" style={{height: `${innerHeight - 300}px`}}>
+			<div className="container-lg" style={{height: `${innerHeight - topSpace}px`}}>
 				<div className="row">
 
 					{magic === false ? <p>Načítání dat...</p> :

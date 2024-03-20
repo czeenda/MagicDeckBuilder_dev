@@ -148,7 +148,7 @@ const Home = () => {
 					
 					<div className='my-auto ms-1'><h4 onClick={() => {click(element.name, element.id)}}>{element.name}</h4>
 						<Link to="/deckbuilder"><span onClick={() => handleItemClick(element)}>Upravit</span></Link> |&nbsp;
-						<span onClick={() => deleteDeck(element)}>Smazat</span>
+						<span className='delete' onClick={() => deleteDeck(element)}>Smazat</span>
 					</div>
 				</div>
 				
