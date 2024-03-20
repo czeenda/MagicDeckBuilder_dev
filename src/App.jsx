@@ -22,7 +22,7 @@ function App() {
 
 
   return (
-    //<section className='p-1' style={{height: window.innerHeight}}>
+    
       <div className="container-fluid pb-1 my-2" id="app">
         <MyContextProvider>
             <Header />
@@ -56,8 +56,6 @@ function App() {
       </MyContextProvider>
     </div>
      
-
-    //</section>
   )
 }
 

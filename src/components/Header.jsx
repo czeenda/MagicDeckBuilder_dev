@@ -1,5 +1,5 @@
 import {Routes, Route, Link} from 'react-router-dom'
-import {useContext} from 'react';
+import {useContext, useEffect ,useRef} from 'react';
 
 import { useAuth } from "../context/AuthProvider";
 
@@ -13,16 +13,26 @@ const Header = () => {
 
 	const { deckName, setDeckName} = useContext(MyContext)
 
+	const menuRef = useRef(null);
+	
 	const empty = () => {
 		logout()
 		setDeckID(false)
 		setDeckName(false)
-		}
+	}
+
+	useEffect(() => {
+    if (menuRef.current) {
+      const menuHeight = menuRef.current.offsetHeight;
+      console.log("Menu height:", menuHeight);
+    }
+  }, []); // This effect runs only once after the component mounts
+
 	
 
 	return (
 		<>
-			<div className="row corners">
+			<div className="row corners" id="menu" ref={menuRef}>
 				<div className="col-12 corners p-0 bg-gray">
 					<div className='m-1 c-white d-flex flex-rows'>
 						<h1 className='my-auto'>Magic Deck Builder</h1>

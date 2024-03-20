@@ -42,8 +42,8 @@ const Editions = () => {
 					{magic === false ? <p>Načítání dat...</p> :
             		<div className="row">
                 		{magic.map((element, id) => (
-							<Link to="/deckbuilder">
-						<div className="col-12 edition d-flex flex-rows justify-content-start align-items-center" key={element.id} onClick={() => setEdition({name: `${element.name}`, code: `${element.code}`, imgUrl: `${element.icon_svg_uri}`})}>
+							<Link to="/deckbuilder" key={id}>
+						<div className="col-12 edition d-flex flex-rows justify-content-start align-items-center" onClick={() => setEdition({name: `${element.name}`, code: `${element.code}`, imgUrl: `${element.icon_svg_uri}`})}>
 									
 								
 									
