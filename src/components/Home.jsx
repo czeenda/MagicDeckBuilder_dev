@@ -108,14 +108,6 @@ const Home = () => {
 		}
 	};
 
-	const click = (name, id) => {
-		prompt("!!!:?")
-		alert(`${name}, ${id}`)
-
-
-	}
-	
-
 		//console.log(`Smazat: ${element.id}`)
 		//setWork(prev => !prev)
 
@@ -146,7 +138,7 @@ const Home = () => {
 
 					<img src={myDeck} className="deck my-auto" onClick={() => handleItemClick(element)}/>
 					
-					<div className='my-auto ms-1'><h4 onClick={() => {click(element.name, element.id)}}>{element.name}</h4>
+					<div className='my-auto ms-1'><h4>{element.name}</h4>
 						<Link to="/deckbuilder"><span onClick={() => handleItemClick(element)}>Upravit</span></Link> |&nbsp;
 						<span className='delete' onClick={() => deleteDeck(element)}>Smazat</span>
 					</div>
