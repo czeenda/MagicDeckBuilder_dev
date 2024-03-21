@@ -78,10 +78,10 @@ const DeckBuilder = () => {
 					card_id: element.id,
 					name: element.name, 
 					deck_id: deckID, 
-					image_url: `${element.image_uris.normal}`,
+					image_url: element.image_uris.normal,
 					price: 10,
-					edition_code: `${edition.code}`,
-					type: `${element.type_line}`}])}
+					edition_code: edition.code,
+					type: element.type_line}])}
 					
 					onMouseEnter={() => setCardPreview(element.image_uris.normal)} onMouseLeave={() => setCardPreview()}
 

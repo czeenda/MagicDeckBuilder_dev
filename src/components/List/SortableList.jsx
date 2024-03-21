@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useState, useRef} from 'react';
 import {Link} from 'react-router-dom'
 
 import {MyContext} from '../../context/MyContext'
@@ -23,8 +23,21 @@ const SortableList = () => {
 
   	const { renamed, setRenamed} = useContext(MyContext)
 
+	const [ saved, setSaved] = useState(false)
+
+	const isFirstRun = useRef(true)
+	
+	const isFirstRunComp = useRef(true)
+
 
   useEffect(() => {
+
+		// Skip the first run (mount)
+		if (isFirstRunComp.current) {
+			isFirstRunComp.current = false;
+			return;
+		  }
+
 		const loadData = async () => {
 			try {
 				const {data, error} = await supabase
@@ -33,14 +46,14 @@ const SortableList = () => {
 					.eq('deck_id', deckID)
 					
 
-					console.log("ok")
+					//console.log("ok")
 
 					if (error) {
 					console.log(error)
 				} else {
-					console.log("funguje")
+					console.log("načteno")
 					setDeck(data)
-					console.log(data)
+					//console.log(data)
 
 				}
 			}
@@ -53,51 +66,115 @@ const SortableList = () => {
 		
 	}, [deckID])
 
+ /* 	useEffect(() =>{
+		console.log(deck)
+	},[deck]) */
+
 	useEffect(() => {
 		setNewDeckName(deckName)
 	}, [deckID])
 
-	useEffect(() => {
-		console.log(deck)
-		
 
-	},[deck])
+	useEffect(() => {
+		// Skip the first run (mount)
+		if (isFirstRun.current) {
+		  isFirstRun.current = false;
+		  return;
+		}
+	  
+		const saveCards = async () => {
+		  try {
+			// Delete cards with the specified deck_id
+			const deleteResult = await supabase
+			  .from('Cards2')
+			  .delete()
+			  .eq('deck_id', deckID);
+			
+			// Check for errors in the delete operation
+			if (deleteResult.error) {
+			  console.log(deleteResult.error);
+			  return; // Exit the function if there's an error in the delete operation
+			}
+			
+			console.log("Deleted existing cards for deck_id:", deckID);
+			
+			// Insert new cards into the 'Cards' table
+			const insertResult = await supabase
+			  .from('Cards2')
+			  .insert(deck);
+			
+			// Check for errors in the insert operation
+			if (insertResult.error) {
+			  console.log(insertResult.error);
+			} else {
+			  console.log("Inserted new cards for deck_id:", deckID, deckName);
+			  // setDecks(insertResult.data) // Uncomment and modify as needed
+			  console.log(insertResult.data);
+			}
+		  } catch (error) {
+			console.log(error);
+			setSaved(prev => !prev);
+		  }
+		};
+	  
+		saveCards();
+		console.log("uloženo");
+		console.log(deck);
+	  
+	  }, []);
+	  
 
   //const lands = deck.filter((element) => element.type.includes("Land"))
 
-	const saveCards = async () => {
-			try {
-			// Delete cards with the specified deck_id
-			const deleteResult = await supabase
-				.from('Cards2')
-				.delete()
-				.eq('deck_id', deckID);
-		
-			// Check for errors in the delete operation
-			if (deleteResult.error) {
-				console.log(deleteResult.error);
-				return; // Exit the function if there's an error in the delete operation
-			}
-		
-			console.log("Deleted existing cards for deck_id:", deckID);
-		
-			// Insert new cards into the 'Cards' table
-			const insertResult = await supabase
-				.from('Cards2')
-				.insert(deck);
-		
-			// Check for errors in the insert operation
-			if (insertResult.error) {
-				console.log(insertResult.error);
-			} else {
-				console.log("Inserted new cards for deck_id:", deckID);
-				// setDecks(insertResult.data) // Uncomment and modify as needed
-				console.log(insertResult.data);
-			}
-			} catch (error) {
-			console.log(error);
-			}
-		};
+	const saveAndLoadData = async () => {
+    try {
+      // Delete cards with the specified deck_id
+      const deleteResult = await supabase
+        .from('Cards2')
+        .delete()
+        .eq('deck_id', deckID);
+
+      // Check for errors in the delete operation
+      if (deleteResult.error) {
+        console.log(deleteResult.error);
+        return; // Exit the function if there's an error in the delete operation
+      }
+
+      console.log("Deleted existing cards for deck_id:", deckID);
+
+      // Insert new cards into the 'Cards' table
+      const insertResult = await supabase
+        .from('Cards2')
+        .insert(deck);
+
+      // Check for errors in the insert operation
+      if (insertResult.error) {
+        console.log(insertResult.error);
+      } else {
+        console.log("Inserted new cards for deck_id:", deckID, "And deck name", deckName);
+        // setDecks(insertResult.data) // Uncomment and modify as needed
+        console.log(insertResult.data);
+
+        //setSaved(!saved)
+      }
+
+      // Load data after saving
+      const { data, error } = await supabase
+        .from('Cards2')
+        .select('*')
+        .eq('deck_id', deckID);
+
+      if (error) {
+        console.log(error);
+      } else {
+        //console.log("Data loaded successfully");
+        setDeck(data);
+        //alert("Data loaded successfully");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
     const moveItem = (dragIndex, hoverIndex) => {
       const draggedItem = deck[dragIndex];
@@ -107,7 +184,7 @@ const SortableList = () => {
         newItems.splice(hoverIndex, 0, draggedItem);
         return newItems;
       });
-	  console.log(deck)
+	  //console.log(deck)
     };
 
     const handleRemoveClick = (id) => {
@@ -152,18 +229,23 @@ const SortableList = () => {
   				    <button className="btn btn-outline-secondary" type="button" /* id="button-addon2" */ onClick={handleRename}>Přejmenovat</button>
 			    </div>
 
-            <button onClick={saveCards} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button>
+            <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button>
             
             
 	        </div>}
 
-          {deckID === false ? <Link to="/">Vyberte váš balíček</Link> : 
+          {deck === false ? <Link to="/">Vyberte váš balíček</Link> : 
           <div>
             <div className='cards mt-1'>
 
+			
             {deck.map((item, index) => (
               <Item key={index} id={index} name={item.name} url={item.image_url} index={index} type={item} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
             ))}
+			
+
+			
+
             
             </div>
 
