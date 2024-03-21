@@ -6,84 +6,42 @@ import blackUrl from '../assets/mana/swamp.svg';
 import redUrl from '../assets/mana/mountain.svg';
 import greenUrl from '../assets/mana/forest.svg';
 
-import colorlessUrl from '../assets/mana/colorless/1.svg'
+//import colorlessUrl from '../assets/mana/colorless/1.svg'
 
 
-const SelectCardItem = ({name, mana}) => {
+const SelectCardItem = ({name, manaCost}) => {
 
-	let colorless
+	const manaImages = {
+    '{R}': redUrl,
+    '{W}': whiteUrl,
+    '{U}': blueUrl,
+    '{B}': blackUrl,
+    '{G}': greenUrl,
+    // Přidejte další barevné mana symboly podle potřeby
+  };	
 
-	if(mana.includes(`{1}`)){
-		colorless = <img src={colorlessUrl} className='mana' />
-	}
 
-	let white
 
-	if(mana.includes(`{W}`)){
-		white = <img src={whiteUrl} className='mana' />
-	}
-	if(mana.includes(`{W}{W}`)){
-		white = <><img src={whiteUrl} className='mana' /><img src={whiteUrl} className='mana' /></>
-	}
-	if(mana.includes(`{W}{W}{W}`)){
-		white = <><img src={whiteUrl} className='mana' /><img src={whiteUrl} className='mana' /><img src={whiteUrl} className='mana' /></>
-	}
-
-	let blue
-
-	if(mana.includes(`{U}`)){
-		blue = <img src={blueUrl} className='mana' />
-	}
-	if(mana.includes(`{U}{U}`)){
-		blue = <><img src={blueUrl} className='mana' /><img src={blueUrl} className='mana' /></>
-	}
-	if(mana.includes(`{U}{U}{U}`)){
-		blue = <><img src={blueUrl} className='mana' /><img src={blueUrl} className='mana' /><img src={blueUrl} className='mana' /></>
-	}
-
-	let black
-
-	if(mana.includes(`{B}`)){
-		black = <img src={blackUrl} className='mana' />
-	}
-	if(mana.includes(`{B}{B}`)){
-		black = <><img src={blackUrl} className='mana' /><img src={blackUrl} className='mana' /></>
-	}
-	if(mana.includes(`{B}{B}{B}`)){
-		black = <><img src={blackUrl} className='mana' /><img src={blackUrl} className='mana' /><img src={blackUrl} className='mana' /></>
-	}
-
-	let red
-
-	if(mana.includes(`{R}`)){
-		red = <img src={redUrl} className='mana' />
-	}
-	if(mana.includes(`{R}{R}`)){
-		red = <><img src={redUrl} className='mana' /><img src={redUrl} className='mana' /></>
-	}
-	if(mana.includes(`{R}{R}{R}`)){
-		red = <><img src={redUrl} className='mana' /><img src={redUrl} className='mana' /><img src={redUrl} className='mana' /></>
-	}
-
-	let green
-
-	if(mana.includes(`{G}`)){
-		green = <img src={greenUrl} className='mana' />
-	}
-	if(mana.includes(`{G}{G}`)){
-		green = <><img src={greenUrl} className='mana' /><img src={greenUrl} className='mana' /></>
-	}
-	if(mana.includes(`{G}{G}{G}`)){
-		green = <><img src={greenUrl} className='mana' /><img src={greenUrl} className='mana' /><img src={greenUrl} className='mana' /></>
-	}
+  // Funkce pro zpracování symbolů many a generování obrázků
+  const generateManaImages = () => {
+	const manaSymbols = manaCost.match(/({[A-Z]})|({\d+})/g); // Updated regular expression
+	if (!manaSymbols) return null; // If no mana symbols found, return null
+  
+	return manaSymbols.map((symbol, index) => {
+	  if (symbol.match(/{\d+}/)) { // If symbol is colorless
+		const number = parseInt(symbol.slice(1, -1));
+		return <img key={`colorless-${number}`} src={`../src/assets/mana/colorless/mana_${number}.svg`} className='mana' /* alt={`{${number}}`} */ />;
+	  } else { // If symbol is colored
+		return <img key={index} src={manaImages[symbol]} className='mana' /* alt={symbol} */ />;
+	  }
+	});
+  };
 
 	return (
 		<>
-			<h6 className="mb-0">{name}</h6>
+			<h6 className="mb-0 pt-11">{name}</h6>
 				<span>
-				{colorless}{blue}{red}{white}{black}{green}
-					
-
+				{generateManaImages()}
 				</span>
 
 		</>

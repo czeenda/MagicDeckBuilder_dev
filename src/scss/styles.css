@@ -91,7 +91,8 @@ body #deckbuilder img.magic:hover {
   transform: scale(1.5);
 }
 body #deckbuilder .mana {
-  height: 16px;
+  display: inline-block;
+  width: 1rem;
 }
 body #editions .edition {
   height: 3rem;

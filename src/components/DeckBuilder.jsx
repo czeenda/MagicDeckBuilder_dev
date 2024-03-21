@@ -5,6 +5,8 @@ import {useAuth} from './../context/AuthProvider'
 
 import SelectCardItem from "./SelectCardItem"
 
+import { v4 as uuidv4 } from 'uuid';
+
 
 // DeckBuilder načítá karty z API a vybrané posílá do pole Deck
 const DeckBuilder = () => {
@@ -25,8 +27,9 @@ const DeckBuilder = () => {
 	const { cardPreview, setCardPreview} = useContext(MyContext)
 
 	const [ topSpace, setTopSpace] = useState(380)
-
-
+	
+	const uuid = uuidv4();
+	
 
     // loading vybrané edice
     useEffect(() => {
@@ -37,7 +40,8 @@ const DeckBuilder = () => {
 
 
 			setMagic(data.data)	
-			console.log(magic)		
+			console.log(magic)
+			//console.log(uuid);		
 
 		}
 		loadCards()
@@ -49,6 +53,8 @@ const DeckBuilder = () => {
 			setTopSpace(304)
 		}
 	})
+
+	
 
 
 	return (
@@ -65,13 +71,13 @@ const DeckBuilder = () => {
 
 			<>{magic.map((element, id) => 
 
-			(<div key={id} className="item">
+			(<div key={id} className="item px-13">
 
 				<div className="p-11 d-flex flex-rows justify-content-between" onClick={() => setDeck([...deck, {
-					id: `${Math.floor(Math.random() * 10000001)}`, /* ${Math.floor(Math.random() * 10001)} */
-					card_id: `${element.id}`,
-					name: `${element.name}`, 
-					deck_id: `${deckID}`, 
+					id: uuid, /* ${Math.floor(Math.random() * 10001)} */
+					card_id: element.id,
+					name: element.name, 
+					deck_id: deckID, 
 					image_url: `${element.image_uris.normal}`,
 					price: 10,
 					edition_code: `${edition.code}`,
@@ -80,7 +86,7 @@ const DeckBuilder = () => {
 					onMouseEnter={() => setCardPreview(element.image_uris.normal)} onMouseLeave={() => setCardPreview()}
 
 					>
-						<SelectCardItem name={element.name} mana={element.mana_cost}/>
+						<SelectCardItem name={element.name} manaCost={element.mana_cost} />
 						
 						{/* <img src={element.image_uris.normal} className="magic d-inline-block" /> */}
 				</div>

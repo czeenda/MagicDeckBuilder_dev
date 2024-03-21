@@ -59,6 +59,8 @@ const SortableList = () => {
 
 	useEffect(() => {
 		console.log(deck)
+		
+
 	},[deck])
 
   //const lands = deck.filter((element) => element.type.includes("Land"))
