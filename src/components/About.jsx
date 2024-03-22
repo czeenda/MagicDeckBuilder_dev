@@ -7,15 +7,9 @@ const About = () => {
 
 	return (
 		<>
-			<h2>TODO</h2>
+			<h2>About</h2>
 
-			<ul>
-				<li>Scale ala netflix</li>
-				<li>Drag and drop</li>
-				<li>Validace formuláře login a register</li>
-				
-			</ul>
-			<p>{edition.name}</p>
+			<p>Plán umístit sem nějaké informace o SPA.</p>
 
 		</>
 	);

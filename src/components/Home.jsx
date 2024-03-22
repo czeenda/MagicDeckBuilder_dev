@@ -119,7 +119,7 @@ const Home = () => {
 			
 
 			<div className="input-group mb-1">
-  				<input type="text" className="form-control border" placeholder="Name of new deck" aria-label="Recipient's username" aria-describedby="button-addon2"
+  				<input type="text" className="form-control border" placeholder="Jméno nového balíčku" aria-label="Recipient's username" aria-describedby="button-addon2"
 				value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} />
   				<button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleAddDeck}>Vytvořit</button>
 			</div>

@@ -12,16 +12,7 @@ const Contacts = () => {
 		<>
 			<h2>Contacts</h2>
 
-			<ul>
-				<li>Ladit design</li>
-			</ul>
-
-			
-			
-			
-		
-
-			
+			<p>Zde můžou být kontakty a odkaza na portfolio.</p>
 
 		</>
 	);

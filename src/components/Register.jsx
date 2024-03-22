@@ -8,17 +8,29 @@ export const Register = () => {
 	const [ email, setEmail] = useState("@")
 	const [ password, setPassword] = useState("")
 
-	const handleClick = () =>{
+	const [ message, setMessage] = useState("")
 
-		try {
-			const {data, error} = register(email, password)
 
-			if (!error && data) {
-				console.log("Registration Successful. Check your email to confirm your account");
-			}
+	const handleClick = (event) =>{
+		event.preventDefault()
+
+		// Regulerní výrazy
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		// Check if the email matches the expected pattern
+		if (!emailRegex.test(email)) {
+		  setMessage("Prosím, zadejte platnou emailovou adresu.");
+		  return;
 		}
-		catch (error) {
-			console.log("Error in Creating Account");
+	
+		try {
+		  const { data, error } = register(email, password);
+	
+		  if (!error && data) {
+			setMessage("Registrace úspěšná, zkontrolujte vás email.");
+		  }
+		} catch (error) {
+		  setMessage("Chyba");
 		}
 
 	}
@@ -27,14 +39,14 @@ export const Register = () => {
 		<>
 
 			<h2>Registrace</h2>
-
-			<form>
+			<p>{message}</p>
+			<form onSubmit={handleClick}>
 				<input type="text" className='form-control border mb-11' value={email} onChange={(event) => setEmail(event.target.value)} />
 				<input type="password" className='form-control border mb-11' value={password} onChange={(event) => setPassword(event.target.value)} />
-				
+				<button type="submit" className="btn btn-secondary">Registrovat</button>
 			</form>
 
-			<button className="btn btn-secondary" onClick={handleClick}>Registrovat</button>
+			
 
 		</>
 	)

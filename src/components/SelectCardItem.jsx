@@ -17,7 +17,6 @@ const SelectCardItem = ({name, manaCost}) => {
     '{U}': blueUrl,
     '{B}': blackUrl,
     '{G}': greenUrl,
-    // Přidejte další barevné mana symboly podle potřeby
   };	
 
 

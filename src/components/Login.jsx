@@ -12,7 +12,8 @@ export const Login = () => {
 
 	const [ message, setMessage] = useState("")
 
-	const handleClick = async () =>{
+	const handleClick = async (event) =>{
+		event.preventDefault()
 		try {
 			const {data, error} = await login(email, password);
 			if (error) {
@@ -34,12 +35,13 @@ export const Login = () => {
 	return (
 		<>
 			<h2>Login</h2>
-			{message}
-			<form>
+			<p>{message}</p>
+			<form onSubmit={handleClick}>
 				<input type="text" className='form-control border mb-11' value={email} onChange={(event) => setEmail(event.target.value)} />
 				<input type="password" className='form-control border mb-11' value={password} onChange={(event) => setPassword(event.target.value)} />
+				<button type="submit" className="btn btn-secondary">Prihlasit se</button>
 			</form>
-			<button className="btn btn-secondary" onClick={handleClick}>Prihlasit se</button>
+			
 		</>
 	)
 }
