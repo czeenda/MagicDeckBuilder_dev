@@ -19,11 +19,15 @@ const SortableList = () => {
 
 	const { deckName, setDeckName} = useContext(MyContext)
 
-  	const [ newDeckName, setNewDeckName] = useState(deckName)
-
   	const { renamed, setRenamed} = useContext(MyContext)
 
+	const { addedCard, setAddedCard} = useContext(MyContext)
+
 	const [ saved, setSaved] = useState(false)
+
+	const [ newDeckName, setNewDeckName] = useState(deckName)
+	const [ showButton, setShowButton] = useState(false)
+
 
 	const isFirstRun = useRef(true)
 	
@@ -121,7 +125,7 @@ const SortableList = () => {
 		console.log("uloženo");
 		console.log(deck);
 	  
-	  }, []);
+	  }, [addedCard]);
 	  
 
   //const lands = deck.filter((element) => element.type.includes("Land"))
@@ -167,7 +171,7 @@ const SortableList = () => {
       if (error) {
         console.log(error);
       } else {
-        //console.log("Data loaded successfully");
+        console.log("Data loaded successfully");
         setDeck(data);
         //alert("Data loaded successfully");
       }
@@ -190,6 +194,7 @@ const SortableList = () => {
     const handleRemoveClick = (id) => {
       const updatedDeck = deck.filter((_, index) => index !== id);
       setDeck(updatedDeck);
+	  setAddedCard(prev => !prev)
       console.log(id)
     };
 
@@ -208,6 +213,7 @@ const SortableList = () => {
 			console.error(error);
 		} else {
 			console.log(data);
+			setShowButton(prev => !prev)
 		}
 
 	};
@@ -225,8 +231,8 @@ const SortableList = () => {
             {/* <h4 className='d-inline-block my-auto'>{newDeckName}</h4> */}
             <div className="input-group">
   				    <input type="text" className="form-control border" placeholder="Name of new deck" aria-label="Recipient's username" aria-describedby="button-addon2"
-				      value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} />
-  				    <button className="btn btn-outline-secondary" type="button" /* id="button-addon2" */ onClick={handleRename}>Přejmenovat</button>
+				      value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} onClick={() => setShowButton(prev => !prev)}/>
+  				    {showButton && <button className="btn btn-outline-secondary" type="button" /* id="button-addon2" */ onClick={handleRename}>Přejmenovat</button>}
 			    </div>
 
             <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button>

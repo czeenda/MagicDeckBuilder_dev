@@ -43,7 +43,7 @@ const Item = ({ id, name, url, index, type, from, moveItem, handleRemoveClick })
 
       <div className="card-box d-inline-block" style={{
 
-    top: `${id + 1 > 45 ? id * 2 - 90 : (id + 1 > 30 ? id * 2 - 60 : (id >= 15 ? id * 2 - 30 : id * 2))}rem`,
+    top: `${id + 1 > 45 ? id * 2.2 - 90 : (id + 1 > 30 ? id * 2.2 - 60 : (id >= 15 ? id * 2.2 - 30 : id * 2.2))}rem`,
     left: id + 1 <= 15 ? "0" : (id + 1 > 45 ? "39rem" : (id + 1 > 30 ? "26rem" : "13rem"))
     }}
 

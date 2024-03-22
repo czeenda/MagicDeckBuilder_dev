@@ -26,6 +26,8 @@ const DeckBuilder = () => {
 
 	const { cardPreview, setCardPreview} = useContext(MyContext)
 
+	const { addedCard, setAddedCard} = useContext(MyContext)	
+
 	const [ topSpace, setTopSpace] = useState(380)
 	
 	const uuid = uuidv4();
@@ -73,15 +75,22 @@ const DeckBuilder = () => {
 
 			(<div key={id} className="item px-13">
 
-				<div className="p-11 d-flex flex-rows justify-content-between" onClick={() => setDeck([...deck, {
-					id: uuid, /* ${Math.floor(Math.random() * 10001)} */
-					card_id: element.id,
-					name: element.name, 
-					deck_id: deckID, 
-					image_url: element.image_uris.normal,
-					price: 10,
-					edition_code: edition.code,
-					type: element.type_line}])}
+				<div className="p-11 d-flex flex-rows justify-content-between" onClick={() => {
+						setDeck(prevDeck => [
+							...prevDeck,
+							{
+							id: uuid, /* ${Math.floor(Math.random() * 10001)} */
+							card_id: element.id,
+							name: element.name, 
+							deck_id: deckID, 
+							image_url: element.image_uris.normal,
+							price: 10,
+							edition_code: edition.code,
+							type: element.type_line
+							}
+						]);
+						setAddedCard(prev => !prev);
+						}}
 					
 					onMouseEnter={() => setCardPreview(element.image_uris.normal)} onMouseLeave={() => setCardPreview()}
 
