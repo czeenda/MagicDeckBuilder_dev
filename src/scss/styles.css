@@ -125,6 +125,27 @@ body #workon .creatures {
 body #workon .card-box {
   position: absolute;
   border-radius: 0.6rem;
+  -webkit-animation: show 0.2s normal;
+          animation: show 0.2s normal;
+}
+body #workon .deleted {
+  animation: show 0.2s reverse;
+}
+@-webkit-keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 body #workon .full {
   border-radius: 0.6rem;
@@ -153,7 +174,7 @@ body #workon .full:hover .x {
   background: black;
 }
 body #workon .input-group {
-  width: 22rem;
+  width: 12rem;
 }
 body #workon .input-group .form-control.border {
   border: solid 0px gray !important;

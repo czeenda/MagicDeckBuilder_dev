@@ -10,6 +10,8 @@ export const MyContextProvider = ({children}) => {
 		imgUrl: 'https://svgs.scryfall.io/sets/blb.svg?1709528400',
 	})
 
+	const [ dateEdition, setDateEdition] = useState(["2024-01-01", "2025-01-01"])
+
 	const [ deckID, setDeckID] = useState(false)
 
 	const [ deckName, setDeckName] = useState("")
@@ -24,7 +26,7 @@ export const MyContextProvider = ({children}) => {
 	
 
 	return (
-		<MyContext.Provider value={{edition, setEdition, deck, setDeck, deckID, setDeckID, deckName, setDeckName, cardPreview, setCardPreview, renamed, setRenamed, addedCard, setAddedCard}}>
+		<MyContext.Provider value={{edition, setEdition, deck, setDeck, deckID, setDeckID, deckName, setDeckName, cardPreview, setCardPreview, renamed, setRenamed, addedCard, setAddedCard, dateEdition, setDateEdition}}>
 			{children}
 		</MyContext.Provider>
 	)

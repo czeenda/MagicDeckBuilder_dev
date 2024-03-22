@@ -143,7 +143,19 @@ body{
         .card-box{
             position: absolute;
             border-radius: $border-radius;
+            animation: show .2s normal;
         }
+        .deleted{
+            animation:  show .2s reverse;
+        }
+
+        @keyframes show {
+            0%   {opacity: 0;}
+            100% {opacity: 1}
+        }
+        
+         
+        
         .full{
             border-radius: $border-radius;
             .card-x{
@@ -175,7 +187,7 @@ body{
             }
         }
         .input-group{
-            width: 22rem;
+            width: 12rem;
             .form-control.border {
                 border: solid 0px gray !important;
                 background: transparent;

@@ -199,7 +199,9 @@ const SortableList = () => {
     };
 
 	
-	const handleRename = async () => {
+	const handleRename = async (event) => {
+		event.preventDefault()
+
 		const { data, error } = await supabase
 		.from('Decks')
 		.update({ name: newDeckName})
@@ -213,8 +215,9 @@ const SortableList = () => {
 			console.error(error);
 		} else {
 			console.log(data);
-			setShowButton(prev => !prev)
+			//setShowButton(prev => !prev)
 		}
+		document.activeElement.blur();
 
 	};
 
@@ -229,11 +232,14 @@ const SortableList = () => {
           <div className='w-100 d-flex flex-rows'>
 
             {/* <h4 className='d-inline-block my-auto'>{newDeckName}</h4> */}
-            <div className="input-group">
+			<form onSubmit={handleRename}>
+            	<div className="input-group">
   				    <input type="text" className="form-control border" placeholder="Name of new deck" aria-label="Recipient's username" aria-describedby="button-addon2"
 				      value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} onClick={() => setShowButton(prev => !prev)}/>
-  				    {showButton && <button className="btn btn-outline-secondary" type="button" /* id="button-addon2" */ onClick={handleRename}>Přejmenovat</button>}
 			    </div>
+				<button className="btn btn-outline-secondary d-none" type="submit" /* id="button-addon2" */ >Přejmenovat</button>
+
+			</form>
 
             <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button>
             

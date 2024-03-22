@@ -6,13 +6,13 @@ import {Link} from 'react-router-dom'
 
 const Editions = () => {
 
+	const { dateEdition, setDateEdition} = useContext(MyContext)
+
 	const {edition, setEdition} = useContext(MyContext)
 
 	const {deck, setDeck} = useContext(MyContext)
 
 	const [magic, setMagic] = useState(false)
-
-	const [ dateEdition, setDateEdition] = useState("2024-01-01")
 
 	const [ topSpace, setTopSpace] = useState(300)
     
@@ -23,13 +23,13 @@ const Editions = () => {
 
             //setMagic(data.cards)
             //console.log(data.data)
-            const mySets = data.data.filter((element) => new Date(element.released_at) >= new Date(dateEdition));
+            const mySets = data.data.filter((element) => new Date(element.released_at) >= new Date(dateEdition[0]) && new Date(element.released_at) < new Date(dateEdition[1]))
 
             setMagic(mySets)
 
 		}
 		loadCards()
-	}, [])
+	}, [dateEdition])
 
 	useEffect(() => {
 		const width = window.innerWidth
@@ -38,12 +38,33 @@ const Editions = () => {
 		}
 	})
 
+	const handleChange = (event) => {
+		const selectedValue = event.target.value;
+		setDateEdition(JSON.parse(selectedValue)); // Parse the selected value back to an array
+	  };
+	
+	const options = [
+		{ label: '2024', dates: ["2024-01-01", "2025-01-01"] },
+		{ label: '2023', dates: ["2023-01-01", "2024-01-01"] },
+		{ label: '2022', dates: ["2022-01-01", "2023-01-01"] },
+		{ label: '2021', dates: ["2021-01-01", "2022-01-01"] },
+	];
+
 	//let height = window.innerHeight;
 
 	return (
 		<section id='editions'>
 			<h3>Edice</h3>
-			<p>Vydané od {dateEdition}</p>
+			<form>
+			<label><p>Choose year</p></label>
+				<select value={JSON.stringify(dateEdition)} onChange={handleChange}>
+					{options.map(option => (
+						<option key={option.label} value={JSON.stringify(option.dates)}>
+						{option.label}
+						</option>
+					))}
+    			</select>
+			</form>
 			
 			<div className="container-lg" style={{height: `${innerHeight - topSpace}px`}}>
 				<div className="row">
