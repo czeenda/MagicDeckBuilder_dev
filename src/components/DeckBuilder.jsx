@@ -67,7 +67,7 @@ const DeckBuilder = () => {
 			<div className="mb-1"><Link to="/editions">Zpět na výběr edice</Link></div>
 			<p>Vybraná edice: <strong>{edition.name}</strong></p>
 
-			<div className="card-section" style={{height: `${innerHeight - topSpace}px`}}>
+			<div className="card-section bg-white" style={{height: `${innerHeight - topSpace}px`}}>
 
 			{magic === false ? <p>Načítání dat</p> : 
 

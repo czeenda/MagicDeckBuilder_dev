@@ -14,7 +14,7 @@ const Editions = () => {
 
 	const [magic, setMagic] = useState(false)
 
-	const [ topSpace, setTopSpace] = useState(300)
+	const [ topSpace, setTopSpace] = useState(336)
     
     useEffect(() => {
 		const loadCards = async () => {
@@ -34,7 +34,7 @@ const Editions = () => {
 	useEffect(() => {
 		const width = window.innerWidth
 		if(width <= 1600){
-			setTopSpace(240)
+			setTopSpace(269)
 		}
 	})
 
@@ -56,8 +56,8 @@ const Editions = () => {
 		<section id='editions'>
 			<h3>Edice</h3>
 			<form>
-			<label><p>Choose year</p></label>
-				<select value={JSON.stringify(dateEdition)} onChange={handleChange}>
+			<label><p className='mb-11'>Choose year:</p></label>
+				<select value={JSON.stringify(dateEdition)} onChange={handleChange} class="form-select border mb-1">
 					{options.map(option => (
 						<option key={option.label} value={JSON.stringify(option.dates)}>
 						{option.label}
@@ -66,7 +66,7 @@ const Editions = () => {
     			</select>
 			</form>
 			
-			<div className="container-lg" style={{height: `${innerHeight - topSpace}px`}}>
+			<div className="container-lg bg-white" style={{height: `${innerHeight - topSpace}px`}}>
 				<div className="row">
 
 					{magic === false ? <p>Načítání dat...</p> :

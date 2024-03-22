@@ -127,6 +127,9 @@ body{
             overflow-y: auto;
             border-radius: $border-radius;
         }
+        .form-select.border{
+            border: solid 1px black!important;
+        }
     }
 
     #workon{

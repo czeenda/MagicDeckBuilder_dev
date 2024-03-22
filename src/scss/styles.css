@@ -112,6 +112,9 @@ body #editions .container-lg {
   overflow-y: auto;
   border-radius: 0.6rem;
 }
+body #editions .form-select.border {
+  border: solid 1px black !important;
+}
 body #workon img.magic {
   width: 12.5rem;
   border-radius: 0.6rem;
