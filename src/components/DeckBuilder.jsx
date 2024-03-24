@@ -69,7 +69,7 @@ const DeckBuilder = () => {
 
 			<div className="card-section bg-white" style={{height: `${innerHeight - topSpace}px`}}>
 
-			{magic === false ? <p>Načítání dat</p> : 
+			{magic === false ? <div className='loading'></div> : 
 
 			<>{magic.map((element, id) => 
 

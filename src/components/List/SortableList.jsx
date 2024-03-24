@@ -31,16 +31,16 @@ const SortableList = () => {
 
 	const isFirstRun = useRef(true)
 	
-	const isFirstRunComp = useRef(true)
+	//const isFirstRunComp = useRef(true)
 
 
   useEffect(() => {
 
 		// Skip the first run (mount)
-		if (isFirstRunComp.current) {
+		/* if (isFirstRunComp.current) {
 			isFirstRunComp.current = false;
 			return;
-		  }
+		  } */
 
 		const loadData = async () => {
 			try {
@@ -124,6 +124,7 @@ const SortableList = () => {
 		saveCards();
 		console.log("uloženo");
 		console.log(deck);
+		setDeckID(deckID)
 	  
 	  }, [addedCard]);
 	  
@@ -174,6 +175,7 @@ const SortableList = () => {
         console.log("Data loaded successfully");
         setDeck(data);
         //alert("Data loaded successfully");
+		
       }
     } catch (error) {
       console.log(error);
@@ -188,7 +190,7 @@ const SortableList = () => {
         newItems.splice(hoverIndex, 0, draggedItem);
         return newItems;
       });
-	  //console.log(deck)
+	  console.log(deck)
     };
 
     const handleRemoveClick = (id) => {

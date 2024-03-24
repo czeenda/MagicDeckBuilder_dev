@@ -4,11 +4,11 @@ import {MyContext} from '../../context/MyContext'
 
 
 
-const ItemType = 'ITEM';
-
 const Item = ({ id, name, url, index, type, from, moveItem, handleRemoveClick }) => {
 
   const {cardPeview, setCardPreview} = useContext(MyContext)
+
+  const ItemType = 'ITEM';
 
 
     const [{ isDragging }, drag] = useDrag({

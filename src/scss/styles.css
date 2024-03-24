@@ -22,6 +22,16 @@ nav a:hover {
   text-decoration: underline;
 }
 
+.loading {
+  height: 200px;
+  width: 100%;
+  background: url(".././assets/loading.gif");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 1rem;
+}
+
 body {
   background-image: url(".././assets/back.jpg");
   background-size: cover;

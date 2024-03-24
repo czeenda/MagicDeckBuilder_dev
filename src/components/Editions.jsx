@@ -4,6 +4,7 @@ import {MyContext} from './../context/MyContext'
 import { useState, useEffect } from "react"
 import {Link} from 'react-router-dom'
 
+
 const Editions = () => {
 
 	const { dateEdition, setDateEdition} = useContext(MyContext)
@@ -69,7 +70,7 @@ const Editions = () => {
 			<div className="container-lg bg-white" style={{height: `${innerHeight - topSpace}px`}}>
 				<div className="row">
 
-					{magic === false ? <p>Načítání dat...</p> :
+					{magic === false ? <div className='loading'></div> :
             		<div className="row">
                 		{magic.map((element, id) => (
 							<Link to="/deckbuilder" key={id}>
