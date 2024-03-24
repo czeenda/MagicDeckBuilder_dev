@@ -13,7 +13,7 @@ const SortableList = () => {
     
   	const {auth, user, logout} = useAuth()
 
-	const {deck, setDeck} = useContext(MyContext)
+	const { deck, setDeck} = useContext(MyContext)
 
 	const { deckID, setDeckID} = useContext(MyContext)
 
@@ -243,7 +243,7 @@ const SortableList = () => {
 
 			</form>
 
-            <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button>
+            <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button><h5 className='my-auto ms-1'>{deck.length}/60</h5>
             
             
 	        </div>}

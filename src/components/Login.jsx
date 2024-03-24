@@ -7,8 +7,8 @@ export const Login = () => {
 	const {login} = useAuth()
 	const navigate = useNavigate()
 
-	const [ email, setEmail] = useState("")
-	const [ password, setPassword] = useState("")
+	const [ email, setEmail] = useState("@")
+	const [ password, setPassword] = useState("heslo")
 
 	const [ message, setMessage] = useState("")
 
@@ -37,8 +37,8 @@ export const Login = () => {
 			<h2>Login</h2>
 			<p>{message}</p>
 			<form onSubmit={handleClick}>
-				<input type="text" className='form-control border mb-11' value={email} onChange={(event) => setEmail(event.target.value)} />
-				<input type="password" className='form-control border mb-11' value={password} onChange={(event) => setPassword(event.target.value)} />
+				<input type="text" className='form-control border mb-11 w-75' value={email} onChange={(event) => setEmail(event.target.value)} />
+				<input type="password" className='form-control border mb-11 w-75' value={password} onChange={(event) => setPassword(event.target.value)} />
 				<button type="submit" className="btn btn-secondary">Prihlasit se</button>
 			</form>
 			
