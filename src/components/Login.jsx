@@ -35,7 +35,7 @@ export const Login = () => {
 	return (
 		<>
 			<h2>Login</h2>
-			<p>{message}</p>
+			<p className='text-danger'>{message}</p>
 			<form onSubmit={handleClick}>
 				<input type="text" className='form-control border mb-11 w-75' value={email} onChange={(event) => setEmail(event.target.value)} />
 				<input type="password" className='form-control border mb-11 w-75' value={password} onChange={(event) => setPassword(event.target.value)} />

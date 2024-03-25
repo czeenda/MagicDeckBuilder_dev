@@ -25,8 +25,8 @@ const Editions = () => {
             //setMagic(data.cards)
             //console.log(data.data)
             const mySets = data.data.filter((element) => new Date(element.released_at) >= new Date(dateEdition[0]) && new Date(element.released_at) < new Date(dateEdition[1]))
-
-            setMagic(mySets)
+			const filtered = mySets.filter((element) => !element.card_count == 0)
+            setMagic(filtered)
 
 		}
 		loadCards()
@@ -58,7 +58,7 @@ const Editions = () => {
 			<h3>Edice</h3>
 			<form>
 			<label><p className='mb-11'>Choose year:</p></label>
-				<select value={JSON.stringify(dateEdition)} onChange={handleChange} class="form-select border mb-1">
+				<select value={JSON.stringify(dateEdition)} onChange={handleChange} className="form-select border mb-1">
 					{options.map(option => (
 						<option key={option.label} value={JSON.stringify(option.dates)}>
 						{option.label}
