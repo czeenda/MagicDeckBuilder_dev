@@ -37,6 +37,8 @@ const SelectCardItem = ({ name, manaCost }) => {
   };
 
   const generateManaImages = () => {
+    if (!manaCost) return <span></span>; // If manaCost is empty or undefined, return empty span
+
     const manaSymbols = manaCost.match(/{[^{}]+}/g); // Regular expression to match symbols within {}
     if (!manaSymbols) return null; // If no mana symbols found, return null
 
