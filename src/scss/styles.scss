@@ -157,6 +157,30 @@ body{
             border-radius: $border-radius;
             animation: show .2s normal;
         }
+        .card-box:nth-child(1){
+            top: 2rem
+        }
+        .card-box:nth-child(2){
+            top: 4rem
+        }
+        .card-box:nth-child(3){
+            top: 6rem
+        }
+        .card-box:nth-child(4){
+            top: 8rem
+        }
+        .card-box:nth-child(5){
+            top: 10rem
+        }
+        .card-box:nth-child(6){
+            top: 12rem
+        }
+        .card-box:nth-child(7){
+            top: 14rem
+        }
+        .card-box:nth-child(8){
+            top: 16rem
+        }
         .deleted{
             animation:  show .2s reverse;
         }
