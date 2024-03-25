@@ -254,7 +254,7 @@ const SortableList = () => {
 
 			
             {deck.map((item, index) => (
-              <Item key={index} id={index} name={item.name} url={item.image_url} index={index} type={item} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
+              <Item key={item.id} id={item.id} name={item.name} url={item.image_url} index={index} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
             ))}
 			
 

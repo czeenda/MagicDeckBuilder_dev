@@ -4,7 +4,7 @@ import {MyContext} from '../../context/MyContext'
 
 
 
-const Item = ({ id, name, url, index, type, from, moveItem, handleRemoveClick }) => {
+const Item = ({ id, name, url, index, from, moveItem, handleRemoveClick }) => {
 
   const {cardPeview, setCardPreview} = useContext(MyContext)
 
@@ -43,8 +43,8 @@ const Item = ({ id, name, url, index, type, from, moveItem, handleRemoveClick })
 
       <div className="card-box d-inline-block" style={{
 
-    top: `${id + 1 > 45 ? id * 2 - 90 : (id + 1 > 30 ? id * 2 - 60 : (id >= 15 ? id * 2 - 30 : id * 2))}rem`,
-    left: id + 1 <= 15 ? "0" : (id + 1 > 45 ? "39rem" : (id + 1 > 30 ? "26rem" : "13rem"))
+    top: `${index + 1 > 45 ? index * 2 - 90 : (index + 1 > 30 ? index * 2 - 60 : (index >= 15 ? index * 2 - 30 : index * 2))}rem`,
+    left: index + 1 <= 15 ? "0" : (index + 1 > 45 ? "39rem" : (index + 1 > 30 ? "26rem" : "13rem"))
     }}
 
       onMouseEnter={() => setCardPreview(url)} onMouseLeave={() => setCardPreview()}>
