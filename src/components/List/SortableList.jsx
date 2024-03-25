@@ -248,7 +248,7 @@ const SortableList = () => {
             
 	        </div>}
 
-          {deck === false ? <Link to="/">Vyberte váš balíček</Link> : 
+          {deckID === false ? <Link to="/">Vyberte nebo vytvořte váš balíček</Link> : 
           <div>
             <div className='cards mt-1'>
 
