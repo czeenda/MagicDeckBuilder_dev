@@ -138,8 +138,8 @@ body #workon .creatures {
 body #workon .card-box {
   position: absolute;
   border-radius: 0.6rem;
-  -webkit-animation: show 0.2s normal;
-          animation: show 0.2s normal;
+  -webkit-animation: show 0.5s normal;
+          animation: show 0.5s normal;
 }
 body #workon .card-box:nth-child(1) {
   top: 2rem;

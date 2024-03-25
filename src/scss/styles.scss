@@ -155,7 +155,7 @@ body{
         .card-box{
             position: absolute;
             border-radius: $border-radius;
-            animation: show .2s normal;
+            animation: show .5s normal;
         }
         .card-box:nth-child(1){
             top: 2rem
