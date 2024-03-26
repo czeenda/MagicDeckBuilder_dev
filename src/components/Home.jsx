@@ -119,7 +119,7 @@ const Home = () => {
 
 	return (
 		<section id='home' className='h-100'>
-			<h3>Balíčky!</h3>
+			<h3>Balíčky</h3>
 			{/* {user.id} */}
 			
 
