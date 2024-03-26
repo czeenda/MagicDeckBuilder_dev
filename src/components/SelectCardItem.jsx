@@ -6,7 +6,7 @@ import blackUrl from '../assets/mana/swamp.svg';
 import redUrl from '../assets/mana/mountain.svg';
 import greenUrl from '../assets/mana/forest.svg';
 
-import fourUrl from '../assets/mana/colorless/mana_4.svg';
+import fourUrl from '../assets/mana/mana_4.svg';
 
 const SelectCardItem = ({ name, manaCost }) => {
   const manaImages = {
