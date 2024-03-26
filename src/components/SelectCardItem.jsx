@@ -16,7 +16,7 @@ const SelectCardItem = ({ name, manaCost }) => {
     '{U}': blueUrl,
     '{B}': blackUrl,
     '{G}': greenUrl,
-    '{1}': oneUrl, // Example for {1}
+    '{1}': oneUrl,
     '{2}': '../src/assets/mana/mana_2.svg', // Example for {2}
     '{3}': '../src/assets/mana/mana_3.svg', // Example for {3}
     '{4}': '../src/assets/mana/mana_3.svg', // Example for {4}
