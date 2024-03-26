@@ -13,6 +13,19 @@ import url4 from '../assets/mana/mana_4.svg';
 import url5 from '../assets/mana/mana_5.svg';
 import url6 from '../assets/mana/mana_6.svg';
 import url7 from '../assets/mana/mana_7.svg';
+import url8 from '../assets/mana/mana_8.svg';
+import url9 from '../assets/mana/mana_9.svg';
+import url10 from '../assets/mana/mana_10.svg';
+import url11 from '../assets/mana/mana_11.svg';
+import url12 from '../assets/mana/mana_12.svg';
+import url13 from '../assets/mana/mana_13.svg';
+import url14 from '../assets/mana/mana_14.svg';
+import url15 from '../assets/mana/mana_15.svg';
+import url16 from '../assets/mana/mana_16.svg';
+import url17 from '../assets/mana/mana_17.svg';
+import url18 from '../assets/mana/mana_18.svg';
+import url19 from '../assets/mana/mana_19.svg';
+import url20 from '../assets/mana/mana_20.svg';
 
 
 const SelectCardItem = ({ name, manaCost }) => {
@@ -29,19 +42,19 @@ const SelectCardItem = ({ name, manaCost }) => {
     '{5}': url5,
     '{6}': url6,
     '{7}': url7,
-    '{8}': '../src/assets/mana/mana_8.svg', // Example for {8}
-    '{9}': '../src/assets/mana/mana_9.svg', // Example for {9}
-    '{10}': '../src/assets/mana/mana_10.svg', // Example for {10}
-    '{11}': '../src/assets/mana/mana_11.svg', // Example for {11}
-    '{12}': '../src/assets/mana/mana_12.svg', // Example for {12}
-    '{13}': '../src/assets/mana/mana_13.svg', // Example for {13}
-    '{14}': '../src/assets/mana/mana_14.svg', // Example for {14}
-    '{15}': '../src/assets/mana/mana_15.svg', // Example for {15}
-    '{16}': '../src/assets/mana/mana_16.svg', // Example for {16}
-    '{17}': '../src/assets/mana/mana_17.svg', // Example for {17}
-    '{18}': '../src/assets/mana/mana_18.svg', // Example for {18}
-    '{19}': '../src/assets/mana/mana_19.svg', // Example for {19}
-    '{20}': '../src/assets/mana/mana_20.svg', // Example for {20}
+    '{8}': url8,
+    '{9}': url9,
+    '{10}': url10,
+    '{11}': url11,
+    '{12}': url12,
+    '{13}': url13,
+    '{14}': url14,
+    '{15}': url15,
+    '{16}': url16,
+    '{17}': url17,
+    '{18}': url18,
+    '{19}': url19,
+    '{20}': url20,
     // Add more as needed
   };
 
