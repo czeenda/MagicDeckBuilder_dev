@@ -234,7 +234,7 @@ const SortableList = () => {
     return (
         <div id="workon">
         
-          {deckName && 
+          {deckID && 
           
           <div className='w-100 d-flex flex-rows'>
 

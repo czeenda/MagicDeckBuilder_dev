@@ -25,6 +25,10 @@ const Home = () => {
 
 	const { renamed, setRenamed} = useContext(MyContext)
 
+	const { moved, setMoved} = useContext(MyContext)
+
+	
+
 	//work const
 	const [ work, setWork] = useState(null)
 
@@ -74,6 +78,7 @@ const Home = () => {
 	  const handleItemClick = (element) => {
 		setDeckID(element.id)
 		setDeckName(element.name)
+		setMoved(false)
 	  }
 
 	  
