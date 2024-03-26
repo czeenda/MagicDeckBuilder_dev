@@ -141,30 +141,6 @@ body #workon .card-box {
   -webkit-animation: show 0.5s normal;
           animation: show 0.5s normal;
 }
-body #workon .card-box:nth-child(1) {
-  top: 2rem;
-}
-body #workon .card-box:nth-child(2) {
-  top: 4rem;
-}
-body #workon .card-box:nth-child(3) {
-  top: 6rem;
-}
-body #workon .card-box:nth-child(4) {
-  top: 8rem;
-}
-body #workon .card-box:nth-child(5) {
-  top: 10rem;
-}
-body #workon .card-box:nth-child(6) {
-  top: 12rem;
-}
-body #workon .card-box:nth-child(7) {
-  top: 14rem;
-}
-body #workon .card-box:nth-child(8) {
-  top: 16rem;
-}
 body #workon .deleted {
   animation: show 0.2s reverse;
 }
