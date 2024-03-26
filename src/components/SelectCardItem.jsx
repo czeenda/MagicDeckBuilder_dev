@@ -6,8 +6,6 @@ import blackUrl from '../assets/mana/swamp.svg';
 import redUrl from '../assets/mana/mountain.svg';
 import greenUrl from '../assets/mana/forest.svg';
 
-import fourUrl from '../assets/mana/mana_4.svg';
-import oneUrl from '../assets/mana/colorless/mana_1.svg';
 
 const SelectCardItem = ({ name, manaCost }) => {
   const manaImages = {
@@ -19,23 +17,23 @@ const SelectCardItem = ({ name, manaCost }) => {
     '{1}': '../src/assets/mana/mana_1.svg', // Example for {1}
     '{2}': '../src/assets/mana/mana_2.svg', // Example for {2}
     '{3}': '../src/assets/mana/mana_3.svg', // Example for {3}
-    '{4}': fourUrl, // Example for {4}
-    '{5}': '../src/assets/mana/colorless/mana_5.svg', // Example for {5}
-    '{6}': '../src/assets/mana/colorless/mana_6.svg', // Example for {6}
-    '{7}': '../src/assets/mana/colorless/mana_7.svg', // Example for {7}
-    '{8}': '../src/assets/mana/colorless/mana_8.svg', // Example for {8}
-    '{9}': '../src/assets/mana/colorless/mana_9.svg', // Example for {9}
-    '{10}': '../src/assets/mana/colorless/mana_10.svg', // Example for {10}
-    '{11}': '../src/assets/mana/colorless/mana_11.svg', // Example for {11}
-    '{12}': '../src/assets/mana/colorless/mana_12.svg', // Example for {12}
-    '{13}': '../src/assets/mana/colorless/mana_13.svg', // Example for {13}
-    '{14}': '../src/assets/mana/colorless/mana_14.svg', // Example for {14}
-    '{15}': '../src/assets/mana/colorless/mana_15.svg', // Example for {15}
-    '{16}': '../src/assets/mana/colorless/mana_16.svg', // Example for {16}
-    '{17}': '../src/assets/mana/colorless/mana_17.svg', // Example for {17}
-    '{18}': '../src/assets/mana/colorless/mana_18.svg', // Example for {18}
-    '{19}': '../src/assets/mana/colorless/mana_19.svg', // Example for {19}
-    '{20}': '../src/assets/mana/colorless/mana_20.svg', // Example for {20}
+    '{4}': '../src/assets/mana/mana_3.svg', // Example for {4}
+    '{5}': '../src/assets/mana/mana_5.svg', // Example for {5}
+    '{6}': '../src/assets/mana/mana_6.svg', // Example for {6}
+    '{7}': '../src/assets/mana/mana_7.svg', // Example for {7}
+    '{8}': '../src/assets/mana/mana_8.svg', // Example for {8}
+    '{9}': '../src/assets/mana/mana_9.svg', // Example for {9}
+    '{10}': '../src/assets/mana/mana_10.svg', // Example for {10}
+    '{11}': '../src/assets/mana/mana_11.svg', // Example for {11}
+    '{12}': '../src/assets/mana/mana_12.svg', // Example for {12}
+    '{13}': '../src/assets/mana/mana_13.svg', // Example for {13}
+    '{14}': '../src/assets/mana/mana_14.svg', // Example for {14}
+    '{15}': '../src/assets/mana/mana_15.svg', // Example for {15}
+    '{16}': '../src/assets/mana/mana_16.svg', // Example for {16}
+    '{17}': '../src/assets/mana/mana_17.svg', // Example for {17}
+    '{18}': '../src/assets/mana/mana_18.svg', // Example for {18}
+    '{19}': '../src/assets/mana/mana_19.svg', // Example for {19}
+    '{20}': '../src/assets/mana/mana_20.svg', // Example for {20}
     // Add more as needed
   };
 
