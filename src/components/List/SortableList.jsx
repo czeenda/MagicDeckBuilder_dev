@@ -23,11 +23,14 @@ const SortableList = () => {
 
 	const { addedCard, setAddedCard} = useContext(MyContext)
 
+	const { moved, setMoved} = useContext(MyContext)
+
+
 	const [ saved, setSaved] = useState(false)
 
 	const [ newDeckName, setNewDeckName] = useState(deckName)
-	const [ showButton, setShowButton] = useState(false)
 
+	
 
 	const isFirstRun = useRef(true)
 	
@@ -101,6 +104,7 @@ const SortableList = () => {
 			}
 			
 			console.log("Deleted existing cards for deck_id:", deckID);
+
 			
 			// Insert new cards into the 'Cards' table
 			const insertResult = await supabase
@@ -174,7 +178,7 @@ const SortableList = () => {
       } else {
         console.log("Data loaded successfully");
         setDeck(data);
-        //alert("Data loaded successfully");
+		setMoved(false)
 		
       }
     } catch (error) {
@@ -190,7 +194,8 @@ const SortableList = () => {
         newItems.splice(hoverIndex, 0, draggedItem);
         return newItems;
       });
-	  console.log(deck)
+	  console.log("moved")
+	  setMoved(true)
     };
 
     const handleRemoveClick = (id) => {
@@ -243,7 +248,9 @@ const SortableList = () => {
 
 			</form>
 
-            <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${deck ? "btn-primary" : "btn-danger"} ms-1`}>Uložit karty</button><h5 className='my-auto ms-1'>{deck.length}/60</h5>
+			<h5 className='my-auto mx-1'>{deck.length}/60</h5>
+
+            <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${!moved ? "d-none" : "btn-danger"} ms-1`}>Uložit karty</button>
             
             
 	        </div>}
