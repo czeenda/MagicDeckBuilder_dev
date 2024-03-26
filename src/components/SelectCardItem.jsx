@@ -6,6 +6,8 @@ import blackUrl from '../assets/mana/swamp.svg';
 import redUrl from '../assets/mana/mountain.svg';
 import greenUrl from '../assets/mana/forest.svg';
 
+import fourUrl from '../assets/mana/colorless/mana_4.svg';
+
 const SelectCardItem = ({ name, manaCost }) => {
   const manaImages = {
     '{R}': redUrl,
@@ -16,7 +18,7 @@ const SelectCardItem = ({ name, manaCost }) => {
     '{1}': '../src/assets/mana/colorless/mana_1.svg', // Example for {1}
     '{2}': '../src/assets/mana/colorless/mana_2.svg', // Example for {2}
     '{3}': '../src/assets/mana/colorless/mana_3.svg', // Example for {3}
-    '{4}': '../src/assets/mana/colorless/mana_4.svg', // Example for {4}
+    '{4}': fourUrl, // Example for {4}
     '{5}': '../src/assets/mana/colorless/mana_5.svg', // Example for {5}
     '{6}': '../src/assets/mana/colorless/mana_6.svg', // Example for {6}
     '{7}': '../src/assets/mana/colorless/mana_7.svg', // Example for {7}
