@@ -8,6 +8,11 @@ import greenUrl from '../assets/mana/forest.svg';
 
 import url1 from '../assets/mana/mana_1.svg';
 import url2 from '../assets/mana/mana_2.svg';
+import url3 from '../assets/mana/mana_3.svg';
+import url4 from '../assets/mana/mana_4.svg';
+import url5 from '../assets/mana/mana_5.svg';
+import url6 from '../assets/mana/mana_6.svg';
+import url7 from '../assets/mana/mana_7.svg';
 
 
 const SelectCardItem = ({ name, manaCost }) => {
@@ -19,11 +24,11 @@ const SelectCardItem = ({ name, manaCost }) => {
     '{G}': greenUrl,
     '{1}': url1,
     '{2}': url2,
-    '{3}': '../src/assets/mana/mana_3.svg', // Example for {3}
-    '{4}': '../src/assets/mana/mana_3.svg', // Example for {4}
-    '{5}': '../src/assets/mana/mana_5.svg', // Example for {5}
-    '{6}': '../src/assets/mana/mana_6.svg', // Example for {6}
-    '{7}': '../src/assets/mana/mana_7.svg', // Example for {7}
+    '{3}': url3, 
+    '{4}': url4, 
+    '{5}': url5,
+    '{6}': url6,
+    '{7}': url7,
     '{8}': '../src/assets/mana/mana_8.svg', // Example for {8}
     '{9}': '../src/assets/mana/mana_9.svg', // Example for {9}
     '{10}': '../src/assets/mana/mana_10.svg', // Example for {10}
