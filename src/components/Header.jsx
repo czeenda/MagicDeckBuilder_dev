@@ -33,7 +33,7 @@ const Header = () => {
 			<div className="row corners" id="menu" /* ref={menuRef} */>
 				<div className="col-12 corners p-0 bg-gray">
 					<div className='m-1 c-white d-flex flex-rows'>
-						<h1 className='my-auto'>Magic Deck Builder</h1>
+						<h1 className='my-auto'>Magic Deck Builder_dev</h1>
 						<div className='my-auto ms-auto me-1'>
 						{auth && <div><span className='me-1'>{user.email}</span><button onClick={empty} className='btn btn-primary'>Odhlasit se</button></div>}
 						</div>
