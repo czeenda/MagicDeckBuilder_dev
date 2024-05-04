@@ -35,17 +35,12 @@ nav a:hover {
 body {
   background-image: url(".././assets/back.jpg");
   background-size: cover;
-  /* section{
-      height: 100vh;
-  } */
 }
 body .container-fluid {
   background: rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: saturate(180%) blur(10px);
-          backdrop-filter: saturate(180%) blur(10px);
   border-radius: 1rem;
-  max-width: 1600px;
   height: 100%;
+  overflow-y: hidden;
 }
 body #app .corners {
   border-top-left-radius: 1rem;
@@ -125,24 +120,107 @@ body #editions .container-lg {
 body #editions .form-select.border {
   border: solid 1px black !important;
 }
-body #workon img.magic {
-  width: 12.5rem;
-  border-radius: 0.6rem;
+body #workon img {
+  width: 100%;
 }
-body #workon .cards {
+body #workon .list {
   position: relative;
+  width: 15rem;
+  display: block;
+  flex: none !important;
 }
-body #workon .creatures {
-  margin-left: 13rem;
+body #workon .list {
+  position: relative;
+  height: 500px;
 }
-body #workon .card-box {
+body #workon .item {
+  position: relative;
+  height: 20rem;
+  width: 100%;
+  border-radius: 0.55rem;
+}
+body #workon .cardd {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 20rem;
   position: absolute;
-  border-radius: 0.6rem;
-  -webkit-animation: show 0.5s normal;
-          animation: show 0.5s normal;
+  left: 0;
+  right: 0;
+  border-radius: 0.55rem;
+}
+body #workon .cardd .x {
+  display: none;
+  color: white;
+  background: black;
+  width: 1rem;
+  height: 1rem;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 0.5rem;
+}
+body #workon .cardd:hover .x {
+  display: flex;
+  z-index: 300;
+}
+body #workon .cardd:nth-child(2n) {
+  top: 2rem;
+}
+body #workon .cardd:nth-child(3n) {
+  top: 4rem;
+}
+body #workon .cardd:nth-child(4n) {
+  top: 6rem;
+}
+body #workon .cardd:nth-child(5n) {
+  top: 8rem;
+}
+body #workon .cardd:nth-child(6n) {
+  top: 10rem;
+}
+body #workon .cardd:nth-child(7n) {
+  top: 12rem;
+}
+body #workon .cardd:nth-child(8n) {
+  top: 14rem;
+}
+body #workon .cardd:nth-child(9n) {
+  top: 16rem;
+}
+body #workon .cardd:nth-child(10n) {
+  top: 18rem;
+}
+body #workon .cardd:nth-child(11n) {
+  top: 20rem;
+}
+body #workon .cardd:nth-child(12n) {
+  top: 22rem;
+}
+body #workon .cardd:nth-child(13n) {
+  top: 24rem;
+}
+body #workon .cardd:nth-child(14n) {
+  top: 26rem;
+}
+body #workon .cardd:nth-child(15n) {
+  top: 28rem;
+}
+body #workon .draggable-area {
+  height: 2rem;
+  width: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+body #workon .cardd-image {
+  top: 0;
+  border-radius: 0.55rem;
+  z-index: 50;
 }
 body #workon .deleted {
   animation: show 0.2s reverse;
+}
+body #workon .dragging {
+  opacity: 0.8;
 }
 @-webkit-keyframes show {
   0% {
@@ -162,6 +240,7 @@ body #workon .deleted {
 }
 body #workon .full {
   border-radius: 0.6rem;
+  border: solid 2px red;
 }
 body #workon .full .card-x {
   top: 0;
@@ -199,10 +278,95 @@ body #workon .input-group .form-control:focus {
   border: solid 1px gray !important;
   outline: none;
 }
-body .dragable {
+
+#draggable .list {
+  padding: 5px;
+  width: 51.5rem;
+  background-color: red;
+  position: relative;
+  /* Apply top: -30rem to cards with index >= 15 */
+  /* Apply top: -60rem to cards with index >= 30 */
+}
+#draggable .list .card {
+  position: relative;
+  width: 12.5rem;
+  height: 2rem;
+  border-radius: 0.6rem;
+}
+#draggable .list .card:nth-child(n+16) {
+  top: -30rem;
+}
+#draggable .list .card:nth-child(n+31) {
+  top: -60rem;
+}
+#draggable .list .card:nth-child(n+46) {
+  top: -90rem;
+}
+#draggable .list img {
+  width: 12.5rem;
+  position: absolute;
+  z-index: 10;
+  border-radius: 0.6rem;
+}
+#draggable .list .item {
+  position: relative;
+  height: 2rem;
+  width: 100%;
+  width: 12.5rem;
+  z-index: 20;
+  border-radius: 0.6rem;
+}
+#draggable .list .item .x {
+  position: absolute;
   top: 0;
+  right: 0;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-top-right-radius: 0.6rem;
+  padding: 0.5rem 0.5rem 0 0;
+  display: none;
+}
+#draggable .list .item:hover .x {
+  display: block;
+  background-color: black;
+}
+#draggable .list .list.draggingOver {
+  background-color: lightblue;
+}
+#draggable .list .item {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  margin: 0;
+}
+#draggable .list .item.dragging {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
+/* #dnd{
+    .list {
+        padding: 5px;
+        width: 300px;
+        background-color: lightgrey;
+      }
+
+      .list.draggingOver {
+        background-color: lightblue;
+      }
+
+      .item {
+        user-select: none;
+        padding: 10px;
+        margin: 0;
+        margin-bottom: 8px;
+        background-color: rgb(115, 101, 115);
+      }
+
+      .item.dragging {
+        background-color: rgb(190, 180, 181);
+      }
+} */
 @media all and (max-width: 1600px) {
   html {
     font-size: 80%;

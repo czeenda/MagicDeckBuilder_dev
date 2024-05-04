@@ -10,11 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.8",
     "@supabase/supabase-js": "^2.39.7",
     "react": "^18.2.0",
-    "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.2",
     "uuid": "^9.0.1"

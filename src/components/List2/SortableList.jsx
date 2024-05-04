@@ -250,7 +250,7 @@ const SortableList = () => {
 
 			<h5 className='my-auto mx-1'>{deck.length}/60</h5>
 
-        	{/* <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${!moved ? "d-none" : "btn-danger"} ms-1`}>Uložit karty</button> */}
+            <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${!moved ? "d-none" : "btn-danger"} ms-1`}>Uložit karty</button>
             
             
 	        </div>}

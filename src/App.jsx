@@ -15,8 +15,14 @@ import Contacts from './components/Contacts'
 
 import Login from './components/Login'
 import Register from './components/Register'
-import SortableListApp from './components/List/SortableListApp'
-import Preview from './components/List/Preview'
+//import SortableListApp from './components/List/SortableListApp'
+import Preview from './components/List2/Preview'
+//import TaskList2 from './components/List2/TaskList_new'
+//import ListDnd from './ListDnd'
+//import ListDnd2 from './ListDnd2'
+//import TaskList from './components/List2/TaskList_new'
+
+import Dnd from './components/List2/Dnd_new.jsx'
 
 function App() {
 
@@ -48,13 +54,15 @@ function App() {
             <div className="col-9">
               <div className="row">
                 <div className="col-3"><Preview/></div>
-                <div className="col-9 ps-0"><SortableListApp/></div>
+                <div className="col-9 ps-0"><Dnd/></div>
               </div>
             
             </div>
         </div>
       </MyContextProvider>
+      
     </div>
+    
      
   )
 }

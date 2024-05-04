@@ -7,11 +7,11 @@ import {useAuth} from '../../context/AuthProvider'
 
 import {supabase} from '../../supabase/client'
 
-import Item from './Item'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
-const SortableList = () => {
-    
-  	const {auth, user, logout} = useAuth()
+function TaskList() {
+
+  const {auth, user, logout} = useAuth()
 
 	const { deck, setDeck} = useContext(MyContext)
 
@@ -36,7 +36,6 @@ const SortableList = () => {
 	
 	//const isFirstRunComp = useRef(true)
 
-
   useEffect(() => {
 
 		// Skip the first run (mount)
@@ -60,7 +59,7 @@ const SortableList = () => {
 				} else {
 					console.log("načteno")
 					setDeck(data)
-					//console.log(data)
+					console.log(data)
 
 				}
 			}
@@ -71,18 +70,26 @@ const SortableList = () => {
 
 		loadData();
 		
-	}, [deckID])
+	}, [])
 
- /* 	useEffect(() =>{
-		console.log(deck)
-	},[deck]) */
+ /*  const yourArray = [
+    { id: '1', content: 'Item first' },
+    { id: '2', content: 'Item 2' },
+    { id: '3', content: 'Item 3' },
+    { id: '4', content: 'Item 4' },
+    { id: '5', content: 'Item 5' },
+    { id: '6', content: 'Item 6' },
+    { id: '7', content: 'Item 7' },
+    { id: '8', content: 'Item 8' },
+    // Add more items as needed
+  ]; */
+  //const[items,setItems] = useState(yourArray)
 
-	useEffect(() => {
-		setNewDeckName(deckName)
-	}, [deckID])
+  useEffect(() => {
+    console.log(deck)
+  },[deck])
 
-
-	useEffect(() => {
+  useEffect(() => {
 		// Skip the first run (mount)
 		if (isFirstRun.current) {
 		  isFirstRun.current = false;
@@ -130,83 +137,24 @@ const SortableList = () => {
 		console.log(deck);
 		setDeckID(deckID)
 	  
-	  }, [addedCard]);
-	  
+	  },[deck]);
 
-  //const lands = deck.filter((element) => element.type.includes("Land"))
+  const onDragEnd = (result)=>{
+    console.log("dragging over",result);
+    if(!result.destination){return;}
+    const updatedList = reorder(deck, result.source.index, result.destination.index);
+    setDeck(updatedList);
+  }
 
-	const saveAndLoadData = async () => {
-    try {
-      // Delete cards with the specified deck_id
-      const deleteResult = await supabase
-        .from('Cards2')
-        .delete()
-        .eq('deck_id', deckID);
+  const reorder = (list, startIndex, endIndex)=>{
+    const result = [...list];
+    const [removed] = result.splice(startIndex,1);
+    result.splice(endIndex,0,removed);
+    return result;
+    
+  }
 
-      // Check for errors in the delete operation
-      if (deleteResult.error) {
-        console.log(deleteResult.error);
-        return; // Exit the function if there's an error in the delete operation
-      }
-
-      console.log("Deleted existing cards for deck_id:", deckID);
-
-      // Insert new cards into the 'Cards' table
-      const insertResult = await supabase
-        .from('Cards2')
-        .insert(deck);
-
-      // Check for errors in the insert operation
-      if (insertResult.error) {
-        console.log(insertResult.error);
-      } else {
-        console.log("Inserted new cards for deck_id:", deckID, "And deck name", deckName);
-        // setDecks(insertResult.data) // Uncomment and modify as needed
-        console.log(insertResult.data);
-
-        //setSaved(!saved)
-      }
-
-      // Load data after saving
-      const { data, error } = await supabase
-        .from('Cards2')
-        .select('*')
-        .eq('deck_id', deckID);
-
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Data loaded successfully");
-        setDeck(data);
-		setMoved(false)
-		
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
-    const moveItem = (dragIndex, hoverIndex) => {
-      const draggedItem = deck[dragIndex];
-      setDeck(prevItems => {
-        const newItems = [...prevItems];
-        newItems.splice(dragIndex, 1);
-        newItems.splice(hoverIndex, 0, draggedItem);
-        return newItems;
-      });
-	  console.log("moved")
-	  setMoved(true)
-    };
-
-    const handleRemoveClick = (id) => {
-      const updatedDeck = deck.filter((_, index) => index !== id);
-      setDeck(updatedDeck);
-	  setAddedCard(prev => !prev)
-      console.log(id)
-    };
-
-	
-	const handleRename = async (event) => {
+  const handleRename = async (event) => {
 		event.preventDefault()
 
 		const { data, error } = await supabase
@@ -228,13 +176,21 @@ const SortableList = () => {
 
 	};
 
-    
-  
-    if(auth){
-    return (
-        <div id="workon">
-        
-          {deckID && 
+  useEffect(() => {
+		setNewDeckName(deckName)
+	}, [deckID])
+
+  const handleRemoveClick = (id) => {
+    const updatedDeck = deck.filter((_, index) => index !== id);
+    setDeck(updatedDeck);
+  setAddedCard(prev => !prev)
+    console.log(id)
+  };
+
+  if(auth){
+  return (
+    <section id="workon">
+      {deckID && 
           
           <div className='w-100 d-flex flex-rows'>
 
@@ -254,37 +210,70 @@ const SortableList = () => {
             
             
 	        </div>}
+          
+          <section id="draggable">
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId='draggable'>
+        {
+          (provided,snapshot)=>(
+            <div 
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className={`list ${snapshot.isDraggingOver ? 'draggingOver':''}`}
+            >
+              {deck.map((item,index)=>(
+                <div className='card'
+                
+                style={{
+                  marginLeft: index + 1 <= 15 ? "0" : (index + 1 > 45 ? "39rem" : (index + 1 > 30 ? "26rem" : "13rem")),
+                  //top: index >= 15 && "-30rem"
+                  }}
+                
+                >
+                  <img src={item.image_url} />
+                <Draggable key={item.id} draggableId={item.id} index={index}>
+                  {
+                    (provided,snapshot)=>(
+                      <div 
+                      className={`item ${snapshot.isDragging ? 'dragging':''}`}
 
-          {deckID === false ? <Link to="/">Vyberte nebo vytvořte váš balíček</Link> : 
-          <div>
-            <div className='cards mt-1'>
-
-			
-            {deck.map((item, index) => (
-              <Item key={item.id} id={item.id} name={item.name} url={item.image_url} index={index} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
-            ))}
-			
-
-			
-
-            
+                      style={provided.draggableProps.style}
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      >
+                      <div 
+                      style={{
+                        //border: "solid 1px red", 
+                        width: "100%", 
+                        height: "2rem",
+                        backgroundImage: `url(${item.image_url})`,
+                        backgroundSize: "100%",
+                        borderTopLeftRadius: ".6rem",
+                        borderTopRightRadius: ".6rem",
+                      }}
+                      >
+                      </div>
+                      <div className='x' onClick={() => {handleRemoveClick(index); setCardPreview()}}>{index + 1}</div>
+                      </div>
+                    )
+                  }
+                </Draggable>
+                
+                </div>
+              ))}
+              
+              {provided.placeholder}
+              
             </div>
+          )
+        }
+      </Droppable>
+    </DragDropContext>
+    </section>
+    
+    </section>
+  )}
+}
 
-            {/* <div className='cards creatures'>
-
-            {deck.map((item, index) => (
-              <Item key={index} id={index} name={item.name} url={item.image_url} index={index} type={item} moveItem={moveItem} handleRemoveClick={handleRemoveClick}/>
-            ))}
-            
-            </div> */}
-            
-            </div>}
-
-        
-
-        </div>
-        
-    )}
-  };
-
-  export default SortableList
+export default TaskList

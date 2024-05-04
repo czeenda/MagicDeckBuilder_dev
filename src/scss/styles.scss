@@ -20,8 +20,9 @@ nav{
         text-decoration: underline;
     }
     }
-
 }
+
+$border-radius: .6rem;
 
 .loading{
     height: 200px;
@@ -36,17 +37,19 @@ nav{
 body{
     background-image: url(".././assets/back.jpg");
     background-size: cover;
-    /* section{
-        height: 100vh;
-    } */
+
+    
+    
     .container-fluid{
         background: rgba(255,255,255,0.8);
-        backdrop-filter: saturate(180%) blur(10px);
+        //backdrop-filter: saturate(180%) blur(10px);
         border-radius: 1rem;
-        max-width: 1600px;
+        //max-width: 1600px;
         height: 100%;
+        overflow-y: hidden;
         
     }
+   
     #app{
         .corners{
             border-top-left-radius: 1rem;
@@ -54,11 +57,11 @@ body{
         }
     }
 
-    $border-radius: .6rem;
+    
 
     img.icon{
         height: 80px
-    }
+    } 
     #home{
         .deck-box{
             border: solid 1px gray;
@@ -142,24 +145,119 @@ body{
     }
 
     #workon{
-        img.magic{
-            width: 12.5rem;
-            border-radius: $border-radius;
-        }
-        .cards{
+        
+        img{width: 100%}
+        .list {
             position: relative;
+            width: 15rem;
+            display: block;
+            flex: none!important;
         }
-        .creatures{
-            margin-left: 13rem;
+        
+        .list{
+            position: relative;
+            height: 500px;
         }
-        .card-box{
+        .item{
+            position: relative;
+            height: 20rem;
+            width: 100%;
+            border-radius: .55rem;
+        }
+        .cardd{
+            background-size: 100%;
+            background-repeat: no-repeat;
+            height: 20rem;
             position: absolute;
-            border-radius: $border-radius;
-            animation: show .5s normal;
+            left: 0;
+            right: 0;
+            border-radius: .55rem;
+            .x{
+                display: none;
+                color: white;
+                background: black;
+                width: 1rem;
+                height: 1rem;
+                top: 0;
+                right: 0;
+                border-bottom-left-radius: .5rem;
+            }
         }
+        .cardd:hover{
+            .x{
+                display: flex;
+                z-index: 300;
+            }
+        }
+        .cardd:nth-child(2n){
+            top: 2rem
+        }
+        .cardd:nth-child(3n){
+            top: 4rem
+        }
+        .cardd:nth-child(4n){
+            top: 6rem
+        }
+        .cardd:nth-child(5n){
+            top: 8rem
+        }
+
+        .cardd:nth-child(6n){
+            top: 10rem
+        }
+        .cardd:nth-child(7n){
+            top: 12rem
+        }
+        .cardd:nth-child(8n){
+            top: 14rem
+        }
+        .cardd:nth-child(9n){
+            top: 16rem
+        }
+        .cardd:nth-child(10n){
+            top: 18rem
+        }
+        .cardd:nth-child(11n){
+            top: 20rem
+        }
+        .cardd:nth-child(12n){
+            top: 22rem
+        }
+        .cardd:nth-child(13n){
+            top: 24rem
+        }
+        .cardd:nth-child(14n){
+            top: 26rem
+        }
+        .cardd:nth-child(15n){
+            top: 28rem
+        }
+
+        .draggable-area{
+            height: 2rem;
+            width: 100%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            z-index: 100;
+        }
+        .cardd-image{
+            top: 0;
+            border-radius: .55rem;
+            z-index: 50;
+        }
+        
+         
         .deleted{
             animation:  show .2s reverse;
         }
+
+        .dragging{
+            opacity: .8;
+            //height: 5rem;
+            //border: solid 3px red
+       }
+
+        
 
         @keyframes show {
             0%   {opacity: 0;}
@@ -170,6 +268,7 @@ body{
         
         .full{
             border-radius: $border-radius;
+            border: solid 2px red;
             .card-x{
                 top: 0;
                 right: 0;
@@ -213,12 +312,112 @@ body{
         }
         
     }
-    
-    .dragable{
-        top: 0
-    }
 }
 
+    #draggable{
+
+        .list {
+            padding: 5px;
+            width: 51.5rem;
+            background-color: red;
+            position: relative;
+            .card{
+                position: relative;
+                width: 12.5rem;
+                height: 2rem;
+                border-radius: $border-radius;
+            }
+            /* Apply top: -30rem to cards with index >= 15 */
+            .card:nth-child(n+16) {
+                top: -30rem;
+            }
+  
+                /* Apply top: -60rem to cards with index >= 30 */
+            .card:nth-child(n+31) {
+                top: -60rem;
+            }
+            .card:nth-child(n+46){
+                top: -90rem;
+            }
+           
+            img{
+                width: 12.5rem;
+                position: absolute;
+                z-index: 10;
+                border-radius: $border-radius;
+            }
+            .item{
+                position: relative;
+                height: 2rem;
+                width: 100%;
+                width: 12.5rem;
+                z-index: 20;
+                border-radius: $border-radius;
+
+                .x{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    background-color: transparent;
+                    color: white;
+                    border: none;
+                    border-top-right-radius: $border-radius;
+                    padding: .5rem .5rem 0 0;
+                    display: none;
+                }
+            }
+            .item:hover{
+                .x{
+                    display: block;
+                    background-color: black;
+                }
+
+            }
+            
+
+            .list.draggingOver {
+                background-color: lightblue;
+                }
+            
+                .item {
+                user-select: none;
+                
+                margin: 0;
+                
+                //background-color: red;
+                }
+            
+                .item.dragging {
+                background-color: rgba(255,255,255,0.5);
+                }
+        }
+
+    
+    }
+
+    /* #dnd{
+        .list {
+            padding: 5px;
+            width: 300px;
+            background-color: lightgrey;
+          }
+          
+          .list.draggingOver {
+            background-color: lightblue;
+          }
+          
+          .item {
+            user-select: none;
+            padding: 10px;
+            margin: 0;
+            margin-bottom: 8px;
+            background-color: rgb(115, 101, 115);
+          }
+          
+          .item.dragging {
+            background-color: rgb(190, 180, 181);
+          }
+    } */
 
 @media all and (max-width: 1600px) {
     html {
