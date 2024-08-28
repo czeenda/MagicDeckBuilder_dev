@@ -125,7 +125,7 @@ body #workon img {
 }
 body #workon .list {
   position: relative;
-  width: 15rem;
+  width: 13rem;
   display: block;
   flex: none !important;
 }
@@ -135,7 +135,7 @@ body #workon .list {
 }
 body #workon .item {
   position: relative;
-  height: 20rem;
+  height: 15rem;
   width: 100%;
   border-radius: 0.55rem;
 }
@@ -163,53 +163,54 @@ body #workon .cardd:hover .x {
   z-index: 300;
 }
 body #workon .cardd:nth-child(2n) {
-  top: 2rem;
+  top: 1.8rem;
 }
 body #workon .cardd:nth-child(3n) {
-  top: 4rem;
+  top: 3.6rem;
 }
 body #workon .cardd:nth-child(4n) {
-  top: 6rem;
+  top: 5.4rem;
 }
 body #workon .cardd:nth-child(5n) {
-  top: 8rem;
+  top: 7.2rem;
 }
 body #workon .cardd:nth-child(6n) {
-  top: 10rem;
+  top: 9rem;
 }
 body #workon .cardd:nth-child(7n) {
-  top: 12rem;
+  top: 10.8rem;
 }
 body #workon .cardd:nth-child(8n) {
-  top: 14rem;
+  top: 12.6rem;
 }
 body #workon .cardd:nth-child(9n) {
-  top: 16rem;
+  top: 14.4rem;
 }
 body #workon .cardd:nth-child(10n) {
-  top: 18rem;
+  top: 16.2rem;
 }
 body #workon .cardd:nth-child(11n) {
-  top: 20rem;
+  top: 18rem;
 }
 body #workon .cardd:nth-child(12n) {
-  top: 22rem;
+  top: 19.8rem;
 }
 body #workon .cardd:nth-child(13n) {
-  top: 24rem;
+  top: 21.6rem;
 }
 body #workon .cardd:nth-child(14n) {
-  top: 26rem;
+  top: 23.4rem;
 }
 body #workon .cardd:nth-child(15n) {
-  top: 28rem;
+  top: 25.2rem;
 }
 body #workon .draggable-area {
-  height: 2rem;
+  height: 1.8rem;
   width: 100%;
   background-size: 100%;
   background-repeat: no-repeat;
   z-index: 100;
+  border-radius: 0.55rem;
 }
 body #workon .cardd-image {
   top: 0;

@@ -26,7 +26,9 @@ const DeckBuilder = () => {
 
 	const { cardPreview, setCardPreview} = useContext(MyContext)
 
-	const { addedCard, setAddedCard} = useContext(MyContext)	
+	const { addedCard, setAddedCard} = useContext(MyContext)
+
+	const { search, setSearch} = useContext(MyContext)	
 
 	const [ topSpace, setTopSpace] = useState(380)
 	
@@ -56,13 +58,10 @@ const DeckBuilder = () => {
 		}
 	})
 
-	
-
-
-	return (
+		return (
 		<section id="deckbuilder">	
 			{/* <p>User: ID {user.id}</p> */}
-			<h3>DeckBuilder</h3>
+			<h3 className="d-inline-block">DeckBuilder</h3>
 			<div className="mb-1"><Link to="/">Zpět na výběr balíku</Link></div>
 			<div className="mb-1"><Link to="/editions">Zpět na výběr edice</Link></div>
 			<p>Vybraná edice: <strong>{edition.name}</strong></p>
@@ -106,6 +105,7 @@ const DeckBuilder = () => {
 			</div>
 		</section>
 	);
+	
 }
 
 export default DeckBuilder;

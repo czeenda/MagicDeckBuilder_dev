@@ -4,7 +4,7 @@ import { MyContext } from '../../context/MyContext';
 //import { useAuth } from '../../context/AuthProvider';
 import { supabase } from '../../supabase/client';
 
-const DroppableList = ({ droppableId, items, setItems, handleRemoveClick }) => (
+const DroppableList = ({ droppableId, items, setItems, handleRemoveClick, setCardPreview, ids }) => (
   
       <Droppable droppableId={droppableId}>
         {(provided, snapshot) => (
@@ -19,7 +19,7 @@ const DroppableList = ({ droppableId, items, setItems, handleRemoveClick }) => (
                 
               <Draggable key={item.id} draggableId={item.id} index={index}>
                 {(provided, snapshot) => (
-                  <div
+                  <div onMouseEnter={() => setCardPreview(item.image_url)} onMouseLeave={() => setCardPreview()}
                     className={`item ${snapshot.isDragging ? 'dragging' : ''}`}
                     style={{
                       ...provided.draggableProps.style,
@@ -30,7 +30,7 @@ const DroppableList = ({ droppableId, items, setItems, handleRemoveClick }) => (
 
                   >
                     <div className='draggable-area' style={{backgroundImage: `url('${item.image_url}')`}}>
-                    <div className='x position-absolute p-1 flex-column justify-content-center align-item-center' onClick={() => {handleRemoveClick(index)/* ; setCardPreview() */}}><div className='mx-auto'>x</div></div>
+                    <div className='x position-absolute p-1 flex-column justify-content-center align-item-center' onClick={() => {handleRemoveClick(index + ids)/* ; setCardPreview() */}}><div className='mx-auto'>x</div></div>
                     </div>
                     <img src={item.image_url} className='cardd-image position-absolute'/>
                   </div>
@@ -47,7 +47,7 @@ const DroppableList = ({ droppableId, items, setItems, handleRemoveClick }) => (
 );
 
 function Dnd() {
-  const { deck, setDeck, deckID, setDeckID, deckName, setRenamed, setShowButton } = useContext(MyContext);
+  const { deck, setDeck, deckID, setDeckID, deckName, setRenamed, setShowButton, cardPreview, setCardPreview } = useContext(MyContext);
   //const { auth } = useAuth();
   const [newDeckName, setNewDeckName] = useState(deckName);
   const isFirstRun = useRef(true);
@@ -57,6 +57,8 @@ function Dnd() {
  const [secondItems, setSecondItems] = useState(deck.slice(15, 30));
  const [thirdItems, setThirdItems] = useState(deck.slice(30, 45));
  const [fourthItems, setFourthItems] = useState(deck.slice(45, 60));
+
+ const [ movedInCol, setMovedInCol ] = useState(true)
 
   
 // načíst data při každé změně
@@ -83,6 +85,15 @@ function Dnd() {
   }, []); */
 
   useEffect(() => {
+    // Při změně decku, rozděl jej znovu do čtyř částí po 15 kartách
+    setFirstItems(deck.slice(0, 15));
+    setSecondItems(deck.slice(15, 30));
+    setThirdItems(deck.slice(30, 45));
+    setFourthItems(deck.slice(45, 60));
+  }, [deck]);
+
+  useEffect(() => {
+
 		// Skip the first run (mount)
 		if (isFirstRun.current) {
 		  isFirstRun.current = false;
@@ -115,7 +126,7 @@ function Dnd() {
 			if (insertResult.error) {
 			  console.log(insertResult.error);
 			} else {
-			  console.log("Inserted new cards for deck_id:", deckID, deckName);
+			  console.log("Inserted new cards for deck_id:", deckID, "name", deckName);
 			  // setDecks(insertResult.data) // Uncomment and modify as needed
 			  console.log(insertResult.data);
 			}
@@ -132,15 +143,6 @@ function Dnd() {
 	  
 	  },[deck]);
   
-
-
-    useEffect(() => {
-      // Při změně decku, rozděl jej znovu do čtyř částí po 15 kartách
-      setFirstItems(deck.slice(0, 15));
-      setSecondItems(deck.slice(15, 30));
-      setThirdItems(deck.slice(30, 45));
-      setFourthItems(deck.slice(45, 60));
-    }, [deck]);
 
   const onDragEnd = useCallback((result) => {
     const { source, destination } = result;
@@ -171,13 +173,30 @@ function Dnd() {
       const newItems = Array.from(items);
       moveItem(newItems, newItems);
       setItems(newItems);
-    } else {
+      
+      // Update the deck state to reflect the changes in the current column
+      const updatedDeck = [
+        ...firstItems.map((item, index) => (source.droppableId === 'first' ? newItems[index] : item)),
+        ...secondItems.map((item, index) => (source.droppableId === 'second' ? newItems[index] : item)),
+        ...thirdItems.map((item, index) => (source.droppableId === 'third' ? newItems[index] : item)),
+        ...fourthItems.map((item, index) => (source.droppableId === 'fourth' ? newItems[index] : item))
+      ];
+      setDeck(updatedDeck);
+    
+      console.log("drag and drop within the same column");
+      console.log(deck);
+    }
+    else {
       const [sourceItems, setSourceItems] = getItemList(source.droppableId);
       const [destinationItems, setDestinationItems] = getItemList(destination.droppableId);
       const movedItem = sourceItems[source.index];
       moveItem(sourceItems, destinationItems);
       setSourceItems(sourceItems);
       setDestinationItems(destinationItems);
+      //setMovedInCol(prev => !prev)
+
+      console.log("drag and drop another panel")
+
   
       // If dragging between different droppables, update the 'deck' state
       const combinedItems = [
@@ -242,7 +261,7 @@ function Dnd() {
 
 			</form>
 
-			<h5 className='my-auto mx-1'>{deck.length}/60</h5>
+			<h5 className='my-auto mx-1' >{deck.length}/60</h5>
 
         	{/* <button onClick={saveAndLoadData} className={`d-inline-block mb-0 btn ${!moved ? "d-none" : "btn-danger"} ms-1`}>Uložit karty</button> */}
             
@@ -252,14 +271,13 @@ function Dnd() {
     }
 
     
-      
 
       <DragDropContext onDragEnd={onDragEnd}>
         <div style={{ display: 'flex' }}>
-          <DroppableList droppableId="first" items={firstItems} setItems={setFirstItems} handleRemoveClick={handleRemoveClick} />
-          <DroppableList droppableId="second" items={secondItems} setItems={setSecondItems} handleRemoveClick={handleRemoveClick}  />
-          <DroppableList droppableId="third" items={thirdItems} setItems={setThirdItems} handleRemoveClick={handleRemoveClick} />
-          <DroppableList droppableId="fourth" items={fourthItems} setItems={setFourthItems} handleRemoveClick={handleRemoveClick} />
+          <DroppableList droppableId="first" items={firstItems} setItems={setFirstItems} handleRemoveClick={handleRemoveClick} setCardPreview={setCardPreview} ids={0} />
+          <DroppableList droppableId="second" items={secondItems} setItems={setSecondItems} handleRemoveClick={handleRemoveClick} setCardPreview={setCardPreview} ids={15}/>
+          <DroppableList droppableId="third" items={thirdItems} setItems={setThirdItems} handleRemoveClick={handleRemoveClick} setCardPreview={setCardPreview} ids={30} />
+          <DroppableList droppableId="fourth" items={fourthItems} setItems={setFourthItems} handleRemoveClick={handleRemoveClick} setCardPreview={setCardPreview} ids={45} />
         </div>
       </DragDropContext>
 

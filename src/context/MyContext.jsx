@@ -25,6 +25,8 @@ export const MyContextProvider = ({children}) => {
 	const [ addedCard, setAddedCard] = useState(false)
 
 	const [ moved, setMoved] = useState(false)
+
+	const [ search, setSearch ] = useState(false)
 	
 
 	return (
