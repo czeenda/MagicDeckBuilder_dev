@@ -34,29 +34,59 @@ const Search = () => {
 
 	const { searchCardName, setSearchCardName} = useContext(MyContext)	
 
-	const [ topSpace, setTopSpace] = useState(380)
+
+	const [error, setError] = useState(null); // State to hold any error messages
+
+  	const [loading, setLoading] = useState(false); // State to manage loading status
+
+
+	const [ topSpace, setTopSpace] = useState(310)
 	
 	const uuid = uuidv4();
 	
 
-    // loading vybrané edice
+    // loading hledaného výrazu
+
     useEffect(() => {
-		const loadCards = async () => {
-		  if (searchCardName.trim() !== '') {
-			try {
-			  const response = await fetch(`https://api.scryfall.com/cards/search?q=${searchCardName}`);
-			  const data = await response.json();
-			  
-			  setMagic(data.data); // Update state with fetched data
-			  console.log("Cards fetched and set:", data.data);
-			} catch (error) {
-			  console.error('Error fetching cards:', error);
-			}
-		  }
-		};
-	
-		loadCards();
-	  }, [searchCardName]);
+    const loadCards = async () => {
+      if (searchCardName.trim() === '') {
+        setMagic([]);
+        setError(null); // Reset error if query is empty
+        return; // Exit if query is empty
+      }
+
+      setLoading(true); // Start loading
+
+      try {
+        const response = await fetch(`https://api.scryfall.com/cards/search?q=${searchCardName}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (data.data.length === 0) {
+          setMagic([]);
+          setError('No cards found for the given search query.');
+        } else {
+          setMagic(data.data); // Update state with fetched data
+          setError(null); // Clear any previous errors
+        }
+
+        console.log("Cards fetched and set:", data.data);
+
+      } catch (error) {
+        console.error('Error fetching cards:', error);
+        setMagic([]);
+        setError('An error occurred while fetching cards.');
+      } finally {
+        setLoading(false); // Stop loading
+      }
+    };
+
+    loadCards();
+  }, [searchCardName]);
  
 	useEffect(() => {
 		const width = window.innerWidth
