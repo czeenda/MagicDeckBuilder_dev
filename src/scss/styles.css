@@ -204,6 +204,18 @@ body #workon .cardd:nth-child(14n) {
 body #workon .cardd:nth-child(15n) {
   top: 25.2rem;
 }
+body #workon .cardd:nth-child(16n) {
+  top: 27rem;
+}
+body #workon .cardd:nth-child(17n) {
+  top: 29.8rem;
+}
+body #workon .cardd:nth-child(18n) {
+  top: 31.6rem;
+}
+body #workon .cardd:nth-child(19n) {
+  top: 33.4rem;
+}
 body #workon .draggable-area {
   height: 1.8rem;
   width: 100%;
