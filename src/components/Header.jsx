@@ -43,7 +43,8 @@ const Header = () => {
 							<nav className='m-0 ps-1 py-12 bg-white'>
 								
 							<Link to="/">Decks</Link><span> | </span>   
-							<Link to="/editions">Editions</Link><span> | </span>  
+							<Link to="/editions">Editions</Link><span> | </span>
+							<Link to="/search">Search</Link><span> | </span>
 							<Link to="/deckbuilder">Deck Builder</Link><span> | </span>  
 							<Link to="/about">About</Link><span> | </span>  
 							<Link to="/contacts">Contacts</Link><span> | </span>  

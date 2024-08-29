@@ -62,18 +62,27 @@ const Home = () => {
 	},[work, renamed])
 
 	const handleAddDeck = async () => {
-		
-		const {data, error} = await supabase
-				.from('Decks')
-				.insert({
-					name: newDeckName,
-				  })
-
-				console.log("přídán nový balíček")
-				setNewDeckName("")
-				setWork(prev => !prev)
-				
-	  }
+		if (newDeckName.trim() === "") { // Check if newDeckName is empty or contains only spaces
+		  alert("Deck name cannot be empty."); // You can replace this with any other treatment, like showing a message in the UI
+		  return; // Exit the function early if the name is empty
+		}
+	  
+		try {
+		  const { data, error } = await supabase
+			.from('Decks')
+			.insert({ name: newDeckName });
+	  
+		  if (error) {
+			console.error("Error adding new deck:", error.message);
+		  } else {
+			console.log("New deck added:", data);
+			setNewDeckName(""); // Clear the input field
+			setWork(prev => !prev); // Toggle the state to trigger any necessary re-render or effects
+		  }
+		} catch (error) {
+		  console.error("Unexpected error:", error);
+		}
+	  };
 
 	  const handleItemClick = (element) => {
 		setDeckID(element.id)
@@ -124,7 +133,7 @@ const Home = () => {
 			
 
 			<div className="input-group mb-1">
-  				<input type="text" className="form-control border" placeholder="Jméno nového balíčku" aria-label="Recipient's username" aria-describedby="button-addon2"
+  				<input type="text" className="form-control border" placeholder="Jméno nového balíčku"
 				value={newDeckName} onChange={(e) => setNewDeckName(e.target.value)} />
   				<button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleAddDeck}>Vytvořit</button>
 			</div>

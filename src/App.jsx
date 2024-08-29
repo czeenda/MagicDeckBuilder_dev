@@ -8,6 +8,7 @@ import { MyContextProvider } from './context/MyContext'
 import Home from './components/Home'
 import Editions from './components/Editions'
 import DeckBuilder from './components/DeckBuilder'
+import Search from './components/Search'
 import About from './components/About'
 import Header from './components/Header'
 
@@ -39,6 +40,7 @@ function App() {
 
                 <Route path="/" element={<Home />} />
                 <Route path="/editions" element={<Editions />} />
+                <Route path="/search" element={<Search />} />
                 <Route path="/deckbuilder" element={<DeckBuilder />} />
                 <Route path="/about" element={<About />} />
 
